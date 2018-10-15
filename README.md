@@ -6,6 +6,8 @@ Welcome to our project page!
 Please see Deliverable_1_v00.pdf for information about the team and each individual.
 
 # Deliverable 2
-The personas can be found in Personas_v00.pdf.
+Please see the product-backlog directory.
 
-The user stories can be found in User_Stories_v00.pdf.
+	The personas can be found in Personas_v00.pdf.
+
+	The user stories can be found in User_Stories_v00.pdf.
