@@ -1,0 +1,119 @@
+
+/* All pages */
+
+body * {
+  background-color: #F7F7F7;
+  font-family: "Helvetica", sans-serif;
+  font-size: 1em;
+}
+
+nav {
+  background-color: #6E3080;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.divCenter {
+  display: inline-block;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  background-color: #F2692D;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5%;
+  box-sizing: border-box;
+  padding: 5px 10px 5px 10px;
+  margin-top: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #F05614;
+}
+
+button:active {
+  cursor: pointer;
+  background-color: #CE470D;
+}
+
+button:disabled {
+  background-color: #F9AC8A;
+}
+
+label {
+  font-weight: bold;
+  text-align: left;
+}
+
+input:required {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  border-width: 1px;
+  border-color: #A0A0A0;
+  border-radius: 2%;
+  border-style: solid;
+}
+
+select {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  border-width: 1px;
+  border-color: #A0A0A0;
+  border-radius: 2%;
+  border-style: solid;
+}
+
+/* Header Style */
+#teqHead {
+  color: #F2692D;
+}
+
+#lipHead {
+  color: #6E3080;
+}
+
+
+/* Login form style */
+.loginDiv {
+  height: 320px;
+  width: 400px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 2px 6px 30px #A0A0A0;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #A0A0A0;
+  border-radius: 2%;
+}
+
+#loginForm {
+  margin: 0 auto;
+  width: 90%;
+  padding: 5%;
+}
+
+#loginBtn {
+  width: 100px;
+}
