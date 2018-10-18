@@ -15,10 +15,10 @@ app.post('/user', function(req, res) {
     const {username, password, access_level} = req.body
     var user = require('./modules/user')
     user.createUser(username, password, access_level)
-        .then((resolve)=>{
+        .then((result)=>{
             res.json({
                 success: true,
-                resolve
+                result
             })
         })
         .catch((error) => {
