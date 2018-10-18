@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+
+  <meta charset="utf-8">
+
+  <title>New User Registration</title>
+
+</head>
+
+<body>
+<header>
+  <h1>
+    <span id="teqHead">Toronto East Quadrant</span>
+    <br>
+    <span id="lipHead">Local Immigration Partnership</span>
+  </h1>
+</header>
+
+<nav>
+</nav>
+
+<main>
+  <h2>New User Registration</h2>
+  <p>Please fill in  the fields below to create a new user:</p>
+  <form id="registrationForm">
+
+    <div>
+      <label for="username">Username</label>
+      <input type="text" placeholder="Chose a new username" name="username" required>
+    </div>
+
+    <div>
+      <label for="password">Password</label>
+      <input type="text" placeholder="Chose a password" name="password" required>
+    </div>
+
+    <div>
+      <label for="usertype">User Type</label>
+      <select name="usertype">
+        <option value="" disabled selected>Pick a user type from the dropdown list...</option>
+        <option value="organization">Support Agency</option>
+        <option value="teq1">TEQ Low Level</option>
+        <option value="teq2">TEQ Mid Level</option>
+        <option value="teq3">TEQ High Level</option>
+        <option value="utsc">UTSC Project Staff</option>
+      </select>
+    </div>
+
+    <button type="submit" id="registerBtn">Register</button>
+  </form>
+</main>
+
+<footer>
+</footer>
+</body>
+</html>
