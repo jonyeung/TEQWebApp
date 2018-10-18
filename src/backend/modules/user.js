@@ -9,10 +9,13 @@ module.exports = {
         const hashedPassword = hash.digest('hex')
         return new Promise((resolve, reject) => {
             con.query(query, [username, hashedPassword, 0, access_level], function(err, result) {
+                console.log(result)
                 if (err) {
                     reject(err)
                 } else {
-                    resolve(result)
+                    resolve({
+                        id: result.insertId
+                    })
                 }
             })
         })
