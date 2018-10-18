@@ -1,5 +1,6 @@
-var express = require('express')
-var app = express();
+const express = require('express')
+const app = express();
+const user = require('./modules/user')
 
 app.use(express.urlencoded());
 
@@ -13,7 +14,6 @@ app.get('/', function(req, res) {
 
 app.post('/user', function(req, res) {
     const {username, password, access_level} = req.body
-    var user = require('./modules/user')
     user.createUser(username, password, access_level)
         .then((result)=>{
             res.json({
@@ -22,10 +22,28 @@ app.post('/user', function(req, res) {
             })
         })
         .catch((error) => {
-                res.json({
-                    success: false,
-                    error
-                })
+            res.json({
+                success: false,
+                error
             })
+        })
 })
+
+app.get('/user', function(req, res) {
+    const {username, password} = req.query
+    user.authenticateUser(username, password)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
 app.listen(8080)
