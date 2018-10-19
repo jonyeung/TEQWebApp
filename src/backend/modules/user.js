@@ -45,7 +45,7 @@ module.exports = {
     },
 
     getUsers: function() {
-        const query = 'select ID, currently_logged_in, access_level from users'
+        const query = 'select ID, username, currently_logged_in, access_level from users'
         return new Promise((resolve, reject) => {
             con.query(query, function(err, result) {
                 if (err) {
