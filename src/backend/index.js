@@ -29,9 +29,25 @@ app.post('/user', function(req, res) {
         })
 })
 
-app.get('/user', function(req, res) {
+app.get('/authenticate', function(req, res) {
     const {username, password} = req.query
     user.authenticateUser(username, password)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
+app.get('/user', function(req, res) {
+    user.getUsers()
         .then((result) => {
             res.json({
                 success: true,
