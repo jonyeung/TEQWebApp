@@ -42,6 +42,22 @@ module.exports = {
                 }
             })
         })
+    },
+
+    getUsers: function() {
+        const query = 'select ID, username, currently_logged_in, access_level from users'
+        return new Promise((resolve, reject) => {
+            con.query(query, function(err, result) {
+                if (err) {
+                    console.log(err)
+                    reject(err)
+                } else {
+                    resolve({
+                        users: result
+                    })
+                }
+            })
+        })
     }
 
     changeUserAccessLevel: function(username, access_level) {
@@ -59,4 +75,5 @@ module.exports = {
             })
         })
     }
+
 }
