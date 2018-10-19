@@ -1,6 +1,8 @@
 # backend API
 Restful API powered by Node.js
 
+A live API endpoint is up and running at https://c01.mechanus.io
+
 ## usage
 
 ### user
