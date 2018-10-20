@@ -2,10 +2,9 @@
 $(document).ready(function() {
 	// user sign-in
 	$("button#loginBtn").on("click", function(){
-
 		var username = $("#loginUsername[name=username]").val();
 		var password = $("#loginPassword[name=password]").val();
-		console.log(username+password);
+
 		$.ajax({
 			type:"GET",
 			url: "https://c01.mechanus.io/authenticate",
@@ -21,7 +20,7 @@ $(document).ready(function() {
 				console.log(data);
 				console.log(status);
 				if(data.result.authenticated){
-					alert("Successfully logged in");
+					alert("Successfully logged in as " + data.result.user.access_level);
 				}else{
 					alert("Username/password does not match,please try again.")
 				}	
@@ -34,8 +33,7 @@ $(document).ready(function() {
 	$("button#registerBtn").on("click", function(){
 		var username = $("#regUsername[name=username]").val();
 		var password = $("#regPassword[name=password]").val();
-		var accessLevel = $("select#userTypeSelect").val();
-		console.log(username+ " " + password+ "Access: " + accessLevel);
+		var accessLevel = $("select#userTypeSelect :selected").val();
 
 		$.ajax({
 			type:"POST",
@@ -43,7 +41,7 @@ $(document).ready(function() {
 			data: ({
 				username : username,
 				password : password,
-				access_level : "TEQ_mid_level"
+				access_level : accessLevel
 			}),
 			error: function(){
 				alert("User creation error");
