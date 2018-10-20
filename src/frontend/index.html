@@ -5,6 +5,7 @@
 
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/script.js"></script>
 
   <meta charset="utf-8">
 
@@ -28,11 +29,11 @@
       <form id="loginForm">
         <div>
           <label for="username">Username</label>
-          <input type="text" placeholder="Enter Username" name="username" required>
+          <input type="text" placeholder="Enter Username" name="username" id="loginUsername" required>
         </div>
         <div>
           <label for="password">Password</label>
-          <input type="text" placeholder="Enter Password" name="password" required>
+          <input type="text" placeholder="Enter Password" name="password" id="loginPassword" required>
         </div>
         <button type="submit" id="loginBtn">Sign In</button>
       </form>
