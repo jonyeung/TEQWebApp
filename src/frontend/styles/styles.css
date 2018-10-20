@@ -122,6 +122,26 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+
 th, td {
-  padding: 5px;
+  padding: 10px;
+}
+
+#userListDiv {
+  width: 70%;
+}
+
+#userList {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#saveButton {
+  width: 150px;
+  padding: 10px;
+}
+
+#saveButtonDiv {
+  margin-top:10px;
+  text-align: right;
 }
