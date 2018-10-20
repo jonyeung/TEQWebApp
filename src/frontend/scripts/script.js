@@ -61,4 +61,27 @@ $(document).ready(function() {
 		return false;
 	});
 
+	// call getUsers from server and populate user list to a table
+	$.ajax({
+		type:"GET",
+		url:"https://c01.mechanus.io/user",
+		error: function(){
+			alert("Error during getUsers");
+		},
+		dataType:"json",
+		traditional:true,
+		success:function(data,status){
+			if(data.success){
+				$(data.result.users).each(function(index){
+					console.log(this.ID + this.username);
+					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
+					this.currently_logged_in+'</td><td>'+this.access_level+'</td></tr>'
+					$('#userList tr:last').after(row);
+				})
+			}else{
+				console.log("Error in getting data from server.")
+			}
+		}
+
+	})
 });
