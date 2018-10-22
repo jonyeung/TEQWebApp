@@ -97,9 +97,9 @@ $(document).ready(function() {
 
 
 	$("button#saveButton").on("click", function(){
-		alert("hello world");
 		$('.changeLevelDropdown').each(function() {
-			if($(this).val != "Pick a user type from the dropdown list...") {
+			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
+				alert($(this).find('option:selected').text());
 				var id = $(this).attr('id')
 				var accessLevel = $(this).val();
 				$.ajax({
