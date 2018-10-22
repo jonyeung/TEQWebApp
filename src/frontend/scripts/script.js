@@ -96,7 +96,8 @@ $(document).ready(function() {
 	})
 
 
-	$("button#idsaveButton").on("click", function(){
+	$("button#saveButton").on("click", function(){
+		alert("hello world");
 		$('.changeLevelDropdown').each(function() {
 			if($(this).val != "Pick a user type from the dropdown list...") {
 				var id = $(this).attr('id')
@@ -124,7 +125,6 @@ $(document).ready(function() {
 					}
 				})
 			}
-		}
-	})
-
+		})
+	});
 });
