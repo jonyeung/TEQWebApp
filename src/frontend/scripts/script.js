@@ -74,8 +74,18 @@ $(document).ready(function() {
 			if(data.success){
 				$(data.result.users).each(function(index){
 					console.log(this.ID + this.username);
+					
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
-					this.currently_logged_in+'</td><td>'+this.access_level+'</td></tr>'
+					this.currently_logged_in+'</td><td>'+this.access_level+'</td></tr>' + generateDropdown(this.ID)
+
+					function generateDropdown(id) {
+						var dropdown = '<select class="changeLevelDropdown" id="'+id+'" name="usertype"><option value=""' + 
+						'disabled selected>Pick a user type from the dropdown list...</option>' + 
+						'<option value="support_agency">Support Agency</option><option value="TEQ_low_level">TEQ Low Level</option>'+
+						'<option value="TEQ_mid_level">TEQ Mid Level</option><option value="TEQ_high_level">TEQ High Level</option>'+
+						'<option value="UTSC_staff">UTSC Project Staff</option></select>'
+					}
+
 					$('#userList tr:last').after(row);
 				})
 			}else{
@@ -84,4 +94,37 @@ $(document).ready(function() {
 		}
 
 	})
+
+
+	$("button#saveButton").on("click", function(){
+		$('.changeLevelDropdown').each(function() {
+			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
+				alert($(this).find('option:selected').text());
+				var id = $(this).attr('id')
+				var accessLevel = $(this).val();
+				$.ajax({
+					type:"GET",
+					url: "https://c01.mechanus.io/user",
+					data: ({
+						access_level : accessLevel,
+						id: id
+					}),
+					error: function(){
+						alert("User access update error");
+					},
+					dataType:"json",
+					traditional: true,
+					success:function(data,status){
+						console.log(data);
+						console.log(status);
+						if(data.success){
+							alert("Updated user id:" + data.result.id + "to access level:" + data.result.access_level);
+						}else{
+							alert("Could not update user, please select a new access level");
+						}
+					}
+				})
+			}
+		})
+	});
 });
