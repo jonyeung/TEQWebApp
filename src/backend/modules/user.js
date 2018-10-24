@@ -61,15 +61,16 @@ module.exports = {
     }
 
     changeUserAccessLevel: function(access_level, id) {
-        const query = 'update users set access_level = ? where id = id'
+        const query = 'update users set access_level = ? where id = ?'
         return new Promise((resolve, reject) => {
-            con.query(query, [access_level, username], function(err, result) {
+            con.query(query, [access_level, id], function(err, result) {
                 console.log(result)
                 if(err) {
                     reject(err)
                 } else {
                     resolve({
-                        id:result.insertID
+                        id: id
+                        access_level: access_level
                     })
                 }
             })

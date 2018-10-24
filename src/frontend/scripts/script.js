@@ -101,18 +101,20 @@ $(document).ready(function() {
 	$("button#saveButton").on("click", function(){
 		$('.changeLevelDropdown').each(function() {
 			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
-				alert($(this).find('option:selected').text());
+				// alert($(this).find('option:selected').text());
 				var id = $(this).attr('id')
 				var accessLevel = $(this).val();
+				alert(id);
+				alert(accessLevel);
 				$.ajax({
-					type:"GET",
-					url: "https://c01.mechanus.io/user",
+					type:"POST",
+					url: "https://c01.mechanus.io/changeAccess",
 					data: ({
 						access_level : accessLevel,
 						id: id
 					}),
 					error: function(){
-						alert("User access update error");
+						alert("User access level update error");
 					},
 					dataType:"json",
 					traditional: true,

@@ -62,7 +62,7 @@ app.get('/user', function(req, res) {
         })
 })
 
-app.get('/changeAccess', function(req,res) {
+app.post('/changeAccess', function(req,res) {
     const {access_level, id} = req.body
     user.changeUserAccessLevel(access_level, id)
         .then((result) =>{
