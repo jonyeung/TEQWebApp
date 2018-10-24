@@ -76,7 +76,8 @@ $(document).ready(function() {
 					console.log(this.ID + this.username);
 					
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
-					this.currently_logged_in+'</td><td>'+this.access_level+'</td></tr>' + generateDropdown(this.ID)
+					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' + 
+					generateDropdown(this.ID) + '</td></tr>';
 
 					function generateDropdown(id) {
 						var dropdown = '<select class="changeLevelDropdown" id="'+id+'" name="usertype"><option value=""' + 
@@ -84,6 +85,7 @@ $(document).ready(function() {
 						'<option value="support_agency">Support Agency</option><option value="TEQ_low_level">TEQ Low Level</option>'+
 						'<option value="TEQ_mid_level">TEQ Mid Level</option><option value="TEQ_high_level">TEQ High Level</option>'+
 						'<option value="UTSC_staff">UTSC Project Staff</option></select>'
+						return dropdown;
 					}
 
 					$('#userList tr:last').after(row);
@@ -127,4 +129,5 @@ $(document).ready(function() {
 			}
 		})
 	});
+
 });

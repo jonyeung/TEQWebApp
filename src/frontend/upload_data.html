@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+    <title>Upload Data</title>
+</head>
+
+<body>
+    <header>
+        <h1>
+          <span id="teqHead">Toronto East Quadrant</span>
+          <br>
+          <span id="lipHead">Local Immigration Partnership</span>
+        </h1>
+      </header>
+</body>
+
+<main>
+    <div id="uploadDataDiv">
+        <div>
+          <label for="templateType">Template Type</label>
+          <select id="userTypeSelect" name="usertype">
+            <option value="" disabled selected>Pick a template type from the dropdown list...</option>
+            <option value="profile">Client Profile</option>
+            <option value="needs_access">Needs Accessments & Referrals </option>
+            <option value="comm_connections">Community Connections</option>
+            <option value="info_ori">Information and Orientation</option>
+            <option value="employ_services">Employment Related Services</option>
+            <option value="lt_enrol">LT Client Enrolment</option>
+            <option value="lt_setup">LT Course Setup</option>
+            <option value="lt_exit">LT Client Exit</option>
+          </select>
+        </div>
+    </div>    
+    <input id="fileSelection" type="file"/>
+</main>
+</html>
