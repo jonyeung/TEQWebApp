@@ -62,4 +62,20 @@ app.get('/user', function(req, res) {
         })
 })
 
+app.get('/excelDB', function(req, res) {
+    user.getDatabase()
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
 app.listen(8080)

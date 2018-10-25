@@ -58,7 +58,7 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 
     changeUserAccessLevel: function(access_level, id) {
         const query = 'update users set access_level = ? where id = id'
@@ -70,6 +70,22 @@ module.exports = {
                 } else {
                     resolve({
                         id:result.insertID
+                    })
+                }
+            })
+        })
+    },
+
+    getDatabase: function() {
+        const query = 'select * from excelDB'
+        return new Promise((resolve, reject) => {
+            con.query(query, function(err, result) {
+                if (err) {
+                    console.log(err)
+                    reject(err)
+                } else {
+                    resolve({
+                        excelDB: result
                     })
                 }
             })
