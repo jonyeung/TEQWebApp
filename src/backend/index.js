@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express();
+const cors = require("cors")
+
 const user = require('./modules/user')
 const agency = require('./modules/agency')
 
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(cors());
 
 app.get('/', function(req, res) {
     res.json({
