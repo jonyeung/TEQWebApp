@@ -58,7 +58,7 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 
     changeUserAccessLevel: function(access_level, id) {
         const query = 'update users set access_level = ? where id = id'
