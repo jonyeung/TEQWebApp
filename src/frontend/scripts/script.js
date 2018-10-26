@@ -130,4 +130,21 @@ $(document).ready(function() {
 		})
 	});
 
+	// upload data function
+	$("button#uploadButton").on("click", function(){
+		var formType = $("select#templateTypeSelect :selected").val();
+		var file = $("input#uploadedFile")[0];
+		// validate whether file is valid excel file
+		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+        if (regex.test(file.value.toLowerCase())) {
+        	alert("is excel file");
+        	// parse file into json, call api to change the database
+            var reader = new FileReader();
+
+            
+        }else{
+        	alert("Invalid format, please upload files in excel format");
+        	return;
+        }
+	});
 });
