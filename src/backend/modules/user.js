@@ -77,7 +77,7 @@ module.exports = {
     },
 
     getDatabase: function() {
-        const query = 'select * from excelDB'
+        const query = 'select * from AgencyData'
         return new Promise((resolve, reject) => {
             con.query(query, function(err, result) {
                 if (err) {
@@ -85,7 +85,7 @@ module.exports = {
                     reject(err)
                 } else {
                     resolve({
-                        excelDB: result
+                        AgencyDB: result
                     })
                 }
             })

@@ -62,7 +62,7 @@ app.get('/user', function(req, res) {
         })
 })
 
-app.get('/excelDB', function(req, res) {
+app.get('/agency-data', function(req, res) {
     user.getDatabase()
         .then((result) => {
             res.json({

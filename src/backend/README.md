@@ -67,15 +67,15 @@ example:
 ```
 
 #### get the excel database
-GET `/excelDB`
+GET `/agency-data`
 
 return value:
 - success: boolean
 - result: object (only if the operation is successful)
-  - excelDB: array of objects
+  - AgencyDB: array of objects
 
 example:
 ```
-➜  backend git:(master) ✗ curl localhost:8080/excelDB
+➜  backend git:(master) ✗ curl localhost:8080/agency-data
 
 ```
