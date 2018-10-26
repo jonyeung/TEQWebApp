@@ -65,3 +65,17 @@ example:
 ➜  backend git:(master) ✗ curl localhost:8080/user
 {"success":true,"result":{"users":[{"ID":1,"username":"testuser","currently_logged_in":0,"access_level":"TEQ_high_level"},{"ID":2,"username":"user2","currently_logged_in":0,"access_level":"TEQ_low_level"},{"ID":3,"username":"user3","currently_logged_in":0,"access_level":"TEQ_low_level"},{"ID":6,"username":"randomuser","currently_logged_in":0,"access_level":"TEQ_mid_level"},{"ID":9,"username":"donaldtrump","currently_logged_in":0,"access_level":"TEQ_mid_level"},{"ID":11,"username":"donaldtrump2","currently_logged_in":0,"access_level":"TEQ_mid_level"},{"ID":12,"username":"donaldtrump3","currently_logged_in":0,"access_level":"TEQ_mid_level"},{"ID":13,"username":"donaldtrump4","currently_logged_in":0,"access_level":"TEQ_mid_level"},{"ID":15,"username":"donaldtrump5","currently_logged_in":0,"access_level":"TEQ_mid_level"}]}}
 ```
+
+#### get the excel database
+GET `/excelDB`
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+  - excelDB: array of objects
+
+example:
+```
+➜  backend git:(master) ✗ curl localhost:8080/excelDB
+
+```
