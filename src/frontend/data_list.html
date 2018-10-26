@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/script.js"></script>
+
+  <meta charset="utf-8">
+
+  <title>Data</title>
+
+</head>
+
+<body>
+<header>
+  <h1>
+    <span id="teqHead">Toronto East Quadrant</span>
+    <br>
+    <span id="lipHead">Local Immigration Partnership</span>
+  </h1>
+</header>
+
+<main>
+  <div id="dataDiv">
+  <h2>Data List</h2>
+  <table id="dataList">
+    <tr>
+      <th>Processing Details</th>
+      <th>Update Record ID</th>
+      <th>Unique Identifier</th>
+      <th>Unique Identifier Value</th>
+      <th>Date of Birth (YYYY-MM-DD)</th>
+      <th>Postal Code where the service was received</th>
+      <th>Language of Service</th>
+      <th>Official Language of Preference</th>
+      <th>Referred By</th>
+      <th>Activity Under Which Client Received Services</th>
+      <th>Type of Institution/Organization Where Client Received Services</th>
+      <th>Type of Event Attended</th>
+      <th>Type of Service</th>
+      <th>Main Topic/Focus of the Service Received</th>
+      <th>Service Received</th>
+      <th>Number of Unique Participants</th>
+      <th>Did Volunteers from the Host Community Participate in the Activity</th>
+      <th>Directed at a Specific Target Group</th>
+      <th>Target Group: Children (0-14 yrs)</th>
+      <th>Target Group: Youth (15-24 yrs)</th>
+      <th>Target Group: Senior</th>
+      <th>Target Group: Gender-specific</th>
+      <th>Target Group: Refugees</th>
+      <th>Target Group: Ethnic/cultural/linguistic group</th>
+      <th>Target Group: Deaf or Hard of Hearing</th>
+      <th>Target Group: Blind or Partially Sighted</th>
+      <th>Target Group: Lesbian, Gay, Bisexual, Transgender, Queer (LGBTQ)</th>
+      <th>Target Group: Families/Parents</th>
+      <th>Target Group: Other impairments (physical, mental)</th>
+      <th>Target Group: Clients with international training in a regulated profession</th>
+      <th>Target Group: Clients with international training in a regulated trade</th>
+      <th>Target Group: Official language minorities</th>
+      <th>Status of Service</th>
+      <th>Reason for Leaving Service</th>
+      <th>Start Date (YYYY-MM-DD)</th>
+      <th>End Date (YYYY-MM-DD)</th>
+      <th>Projected End Date (YYYY-MM-DD)</th>
+      <th>Was Essential Skills and Aptitudes Training Received as Part of the Service?</th>
+      <th>Computer Skills</th>
+      <th>Document Use</th>
+      <th>Interpersonal Skills and Workplace Culture</th>
+      <th>Leadership Training</th>
+      <th>Life Skills</th>
+      <th>Numeracy</th>
+      <th>Support Services Received</th>
+      <th>Care for Newcomer Children</th>
+      <th>Child 1: Age</th>
+      <th>Child 1: Type of Care</th>
+      <th>Child 2: Age</th>
+      <th>Child 2: Type of Care</th>
+      <th>Child 3: Age</th>
+      <th>Child 3: Type of Care</th>
+      <th>Child 4: Age</th>
+      <th>Child 4: Type of Care</th>
+      <th>Child 5: Age</th>
+      <th>Child 5: Type of Care</th>
+      <th>Transportation</th>
+      <th>Provisions for Disabilities</th>
+      <th>Translation</th>
+      <th>Between</th>
+      <th>And</th>
+      <th>Interpretation</th>
+      <th>Between</th>
+      <th>And</th>
+      <th>Crisis Counselling</th>
+      <th>Total Length of Service: Hours</th>
+      <th>Total Length of Service: Minutes</th>
+      <th>Reason for update</th>
+      <th>Start Date of Service (YYYY-MM-DD)</th>
+      <th>Total Length of Orientation</th>
+      <th>Total Length of Orientation: Hours</th>
+      <th>Total Length of Orientation: Minutes</th>
+      <th>Number of Clients in Group</th>
+      <th>Overview of Canada</th>
+      <th>Overview of Canada Referrals</th>
+      <th>Sources of Information</th>
+      <th>Sources of Information Referrals</th>
+      <th>Rights and Freedoms</th>
+      <th>Rights and Freedoms Referrals</th>
+      <th>Canadian Law and Justice</th>
+      <th>Canadian Law and Justice Referrals</th>
+      <th>Important Documents</th>
+      <th>Important Documents Referrals</th>
+      <th>Improving English or French</th>
+      <th>Improving English or French Referrals</th>
+      <th>Employment and Income</th>
+      <th>Employment and Income Referrals</th>
+      <th>Education</th>
+      <th>Education Referrals</th>
+      <th>Housing</th>
+      <th>Housing Referrals</th>
+      <th>Health</th>
+      <th>Health Referrals</th>
+      <th>Money and Finances</th>
+      <th>Money and Finances Referrals</th>
+      <th>Transportation</th>
+      <th>Transportation Referrals</th>
+      <th>Communications and Media</th>
+      <th>Communications and Media Referrals</th>
+      <th>Community Engagement</th>
+      <th>Community Engagement Referrals</th>
+      <th>Becoming a Canadian Citizen</th>
+      <th>Becoming a Canadian Citizen Referrals</th>
+      <th>Interpersonal Conflict</th>
+      <th>Interpersonal Conflict Referrals</th>
+      <th>Was Life Skills or Responsibilities of Citizenship Information Received as Part of this Service?</th>
+      <th>Rights and Responsibilities of Citizenship (based on discover Canada)</th>
+      <th>End Date of Service (YYYY-MM-DD)</th>
+      <th>Start Date of Assessment (YYYY-MM-DD)</th>
+      <th>Increase knowledge of: Life in Canada</th>
+      <th>Increase knowledge of: Life in Canada Referrals</th>
+      <th>Increase knowledge of: Community and Government Services</th>
+      <th>Increase knowledge of: Community and Government Services Referrals</th>
+      <th>Increase knowledge of: Working in Canada</th>
+      <th>Increase knowledge of: Working in Canada Referrals</th>
+      <th>Increase knowledge of: Education in Canada</th>
+      <th>Increase knowledge of: Education in Canada Referrals</th>
+      <th>Increase the following: Social networks</th>
+      <th>Increase the following: Social networks Referrals</th>
+      <th>Increase the following: Professional networks</th>
+      <th>Increase the following: Professional networks Referrals</th>
+      <th>Increase the following: Access to local community services</th>
+      <th>Increase the following: Access to local community services Referrals</th>
+      <th>Increase the following: Level of community involvement</th>
+      <th>Increase the following: Level of community involvement Referrals</th>
+      <th>Improve Language Skills</th>
+      <th>Improve Language Skills Referrals</th>
+      <th>Improve Language Skills to</th>
+      <th>Improve Other Skills</th>
+      <th>Improve Other Skills Referrals</th>
+      <th>Improve Other Skills to</th>
+      <th>Find employment</th>
+      <th>Find employment Referrals</th>
+      <th>Find employment: TimeFrame</th>
+      <th>Find employment: Minimum one year's work experience?</th>
+      <th>Find employment: Intends to work in an occupation corresponding to which National Occupation Classification skill level?</th>
+      <th>Find employment: Intends to obtain credential recognition or obtain license to work in Canada?</th>
+      <th>Client intends to become a Canadian citizen?</th>
+      <th>Support services may be required</th>
+      <th>Non-IRCC program services needed</th>
+      <th>Food/Clothing/Other Material Needs</th>
+      <th>Food/Clothing/Other Material Needs Referrals</th>
+      <th>Housing/Accommodation</th>
+      <th>Housing/Accommodation Referrals</th>
+      <th>Health/Mental Health/Well Being</th>
+      <th>Health/Mental Health/Well Being Referrals</th>
+      <th>Financial</th>
+      <th>Financial Referrals</th>
+      <th>Family Support</th>
+      <th>Family Support Referrals</th>
+      <th>Language (Non-IRCC)</th>
+      <th>Language (Non-IRCC) Referrals</th>
+      <th>Education/Skills Development</th>
+      <th>Education/Skills Development Referrals</th>
+      <th>Employment-related</th>
+      <th>Employment-related Referrals</th>
+      <th>Legal Information and Services</th>
+      <th>Legal Information and Services Referrals</th>
+      <th>Community Services</th>
+      <th>Community Services Referrals</th>
+      <th>Settlement Plan completed and shared with client</th>
+      <th>End Date of Assessment (YYYY-MM-DD)</th>
+      <th>Phone Number</th>
+      <th>Does the Client Have an Email Address</th>
+      <th>Email Address</th>
+      <th>Street Number</th>
+      <th>Street Name</th>
+      <th>Street Type</th>
+      <th>Street Direction</th>
+      <th>Unit/Suite/Apt</th>
+      <th>City</th>
+      <th>Province</th>
+      <th>Postal Code</th>
+      <th>Consent for Future Research/Consultation</th>
+      <th>Registration in an employment intervention</th>
+      <th>A referral to</th>
+      <th>Referral Date (YYYY-MM-DD)</th>
+      <th>Employment Status</th>
+      <th>Education Status</th>
+      <th>Occupation in Canada</th>
+      <th>Intended Occupation</th>
+      <th>Intervention Type</th>
+      <th>Long Term Intervention: Intervention Received</th>
+      <th>Long Term Intervention: Status of Intervention</th>
+      <th>Long Term Intervention: Reason For Leaving Intervention</th>
+      <th>Long Term Intervention: Start Date (YYYY-MM-DD)</th>
+      <th>Long Term Intervention: End Date (YYYY-MM-DD)</th>
+      <th>Long Term Intervention: Size of Employer</th>
+      <th>Long Term Intervention: Placement Was</th>
+      <th>Long Term Intervention: Hours Per Week</th>
+      <th>Long Term Intervention: Client Met Mentor Regularly at</th>
+      <th>Long Term Intervention: Average Hours/Week in Contact with Mentor</th>
+      <th>Long Term Intervention: Profession/Trade For Which Services Were Received</th>
+      <th>Short Term Intervention: Service Received</th>
+      <th>Short Term Intervention: Date (YYYY-MM-DD)</th>
+      <th>Time Spent With Client/Addressing Client's Employment Needs: Hours</th>
+      <th>Time Spent With Client/Addressing Client's Employment Needs: Minutes</th>
+      <th>Course Code</th>
+      <th>Date of Client's First Class (YYYY-MM-DD)</th>
+      <th>Notes</th>
+      <th>Course Held On An Ongoing Basis</th>
+      <th>Format of Training Provided</th>
+      <th>Classes Held At</th>
+      <th>In-Person Instruction (%)</th>
+      <th>Online/Distance Instruction (%)</th>
+      <th>Total Number of Spots in Course</th>
+      <th>Number of IRCC-Funded Spots in Course</th>
+      <th>New Students Can Enrol in the Course</th>
+      <th>Support Services Available for Client in this Course</th>
+      <th>Course Start Date (YYYY-MM-DD)</th>
+      <th>Course End Date (YYYY-MM-DD)</th>
+      <th>Schedule: Morning</th>
+      <th>Schedule: Afternoon</th>
+      <th>Schedule: Evening</th>
+      <th>Schedule: Weekend</th>
+      <th>Schedule: Anytime</th>
+      <th>Schedule: Online</th>
+      <th>Instructional Hours Per Class</th>
+      <th>Classes Per Week</th>
+      <th>Weeks of Instruction</th>
+      <th>Weeks of Instruction Per Year</th>
+      <th>Dominant Focus of the Course</th>
+      <th>Course Directed at a Specific Target Group</th>
+      <th>Children (0-14 yrs)</th>
+      <th>Youth (15-24 yrs)</th>
+      <th>Senior</th>
+      <th>Gender-specific</th>
+      <th>Refugees</th>
+      <th>Official language minorities</th>
+      <th>Ethnic/cultural/linguistic group</th>
+      <th>Deaf or Hard of Hearing</th>
+      <th>Blind or Partially Sighted</th>
+      <th>Clients with other impairments (physical, mental)</th>
+      <th>Lesbian, Gay, Bisexual, Transgender, Queer (LGBTQ)</th>
+      <th>Families/Parents</th>
+      <th>Clients with international training in a regulated profession</th>
+      <th>Clients with international training in a regulated trade</th>
+      <th>Materials Used in Course</th>
+      <th>Citizenship preparation</th>
+      <th>PBLA language companion</th>
+      <th>Contact Name</th>
+      <th>Telephone Extension</th>
+      <th>Listening Skill Level 1</th>
+      <th>Listening Skill Level 2</th>
+      <th>Listening Skill Level 3</th>
+      <th>Listening Skill Level 4</th>
+      <th>Listening Skill Level 5</th>
+      <th>Listening Skill Level 6</th>
+      <th>Listening Skill Level 7</th>
+      <th>Listening Skill Level 8</th>
+      <th>Listening Skill Level 9</th></th>
+      <th>Listening Skill Level 10</th>
+      <th>Listening Skill Level 11</th>
+      <th>Listening Skill Level 12</th>
+      <th>Speaking Skill Level 1</th>
+      <th>Speaking Skill Level 2</th>
+      <th>Speaking Skill Level 3</th>
+      <th>Speaking Skill Level 4</th>
+      <th>Speaking Skill Level 5</th>
+      <th>Speaking Skill Level 6</th>
+      <th>Speaking Skill Level 7</th>
+      <th>Speaking Skill Level 8</th>
+      <th>Speaking Skill Level 9</th>
+      <th>Speaking Skill Level 10</th>
+      <th>Speaking Skill Level 11</th>
+      <th>Speaking Skill Level 12</th>
+      <th>Reading Skill Level 1</th>
+      <th>Reading Skill Level 2</th>
+      <th>Reading Skill Level 3</th>
+      <th>Reading Skill Level 4</th>
+      <th>Reading Skill Level 5</th>
+      <th>Reading Skill Level 6</th>
+      <th>Reading Skill Level 7</th>
+      <th>Reading Skill Level 8</th>
+      <th>Reading Skill Level 9</th>
+      <th>Reading Skill Level 10</th>
+      <th>Reading Skill Level 11</th>
+      <th>Reading Skill Level 12</th>
+      <th>Reading Skill Level 13</th>
+      <th>Reading Skill Level 14</th>
+      <th>Reading Skill Level 15</th>
+      <th>Reading Skill Level 16</th>
+      <th>Reading Skill Level 17</th>
+      <th>Writing Skill Level 1</th>
+      <th>Writing Skill Level 2</th>
+      <th>Writing Skill Level 3</th>
+      <th>Writing Skill Level 4</th>
+      <th>Writing Skill Level 5</th>
+      <th>Writing Skill Level 6</th>
+      <th>Writing Skill Level 7</th>
+      <th>Writing Skill Level 8</th>
+      <th>Writing Skill Level 9</th>
+      <th>Writing Skill Level 10</th>
+      <th>Writing Skill Level 11</th>
+      <th>Writing Skill Level 12</th>
+      <th>Writing Skill Level 13</th>
+      <th>Writing Skill Level 14</th>
+      <th>Writing Skill Level 15</th>
+      <th>Writing Skill Level 16</th>
+      <th>Writing Skill Level 17</th>
+      <th>Client's Training Status</th>
+      <th>Date Client Exited Course (YYYY-MM-DD)</th>
+      <th>Reason for Exiting course</th>
+      <th>Listening CLB Level</th>
+      <th>Speaking CLB Level</th>
+      <th>Reading CLB Level</th>
+      <th>Writing CLB Level</th>
+      <th>Listening level indicated on Certificate</th>
+      <th>Speaking level indicated on Certificate</th>
+
+    </tr>
+  </table>
+</div>
+</main>
+
+<footer>
+</footer>
+</body>
+</html>

@@ -145,3 +145,14 @@ th, td {
   margin-top:10px;
   text-align: right;
 }
+
+#dataDiv {
+  width:90%;
+}
+
+#dataList {
+  width: 100%;
+  display:block;
+  overflow: auto;
+  white-space:nowrap;
+}
