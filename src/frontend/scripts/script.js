@@ -49,8 +49,6 @@ $(document).ready(function() {
 			dataType:"json",
 			traditional: true,
 			success:function(data,status){
-				// console.log(data);
-				// console.log(status);
 				if(data.success){
 					alert("Registered user with id" + data.result.id);
 				}else{
@@ -73,8 +71,6 @@ $(document).ready(function() {
 		success:function(data,status){
 			if(data.success){
 				$(data.result.users).each(function(index){
-					console.log(this.ID + this.username);
-					
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
 					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' + 
 					generateDropdown(this.ID) + '</td></tr>';
@@ -104,6 +100,7 @@ $(document).ready(function() {
 				alert($(this).find('option:selected').text());
 				var id = $(this).attr('id')
 				var accessLevel = $(this).val();
+				console.log(id + accessLevel)
 				$.ajax({
 					type:"GET",
 					url: "https://c01.mechanus.io/user",
@@ -168,18 +165,40 @@ $(document).ready(function() {
 		var workbook = XLSX.read(data,{
 			type: 'binary'
 		});
+		// only read the first sheet
 		var firstSheet = workbook.SheetNames[0];
 
 
-		//{range:2} will skip the first two rows
-		var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:2});
-		//var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:2});
+		//{range:i} will skip the first i row
+		//var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:1});
+		var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:2});
 
-		for(var i = 0; i < excelRows.length; i++){
+		for(var i = 1; i < excelRows.length; i++){
 			if(excelRows[i] != undefined){
 				console.log(excelRows[i]);
 				var row = {"row" : excelRows[i]};
 				console.log(row);
+
+				$.ajax({
+					type:"POST",
+					url: "https://c01.mechanus.io/insertRow",
+					data: row,
+					error: function(){
+						alert("Excel processing is unsuccessful.");
+					},
+					dataType:"json",
+					traditional: true,
+					success:function(data,status){
+						// console.log(data);
+						// console.log(status);
+						if(data.success){
+							alert("Data uploaded" );
+						}else{
+							alert("Could not upload data, please try again");
+						}
+					}
+				})
+
 			}
 		}
 	}
