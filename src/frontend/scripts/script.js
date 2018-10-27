@@ -134,17 +134,50 @@ $(document).ready(function() {
 	$("button#uploadButton").on("click", function(){
 		var formType = $("select#templateTypeSelect :selected").val();
 		var file = $("input#uploadedFile")[0];
+		var result = {};
 		// validate whether file is valid excel file
 		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
         if (regex.test(file.value.toLowerCase())) {
-        	alert("is excel file");
-        	// parse file into json, call api to change the database
-            var reader = new FileReader();
-
-            
+        	//alert("is excel file"); 
+			var reader = new FileReader();
+            if (reader.readAsBinaryString) {
+                reader.onload = function (e) {
+                    processExcel(e.target.result);
+                };
+                reader.readAsBinaryString(file.files[0]);
+            } else {
+                //For IE Browser.
+                reader.onload = function (e) {
+                    var data = "";
+                    var bytes = new Uint8Array(e.target.result);
+                    for (var i = 0; i < bytes.byteLength; i++) {
+                        data += String.fromCharCode(bytes[i]);
+                    }
+                    processExcel(data);
+                };
+                reader.readAsArrayBuffer(file.files[0]);
+            }
         }else{
-        	alert("Invalid format, please upload files in excel format");
+        	alert("Invalid format, please upload files in excel format (.xls) or (.xlsx)");
         	return;
         }
+
 	});
+
+	function processExcel(data){
+		var workbook = XLSX.read(data,{
+			type: 'binary'
+		});
+		var firstSheet = workbook.SheetNames[0];
+
+		//{range:2} will skip the first two rows
+		var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:2});
+		//var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:2});
+
+		for(var i = 0; i < excelRows.length; i++){
+			if(excelRows[i] != undefined){
+				console.log(excelRows[i]);
+			}
+		}
+	}
 });
