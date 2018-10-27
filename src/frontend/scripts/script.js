@@ -49,8 +49,8 @@ $(document).ready(function() {
 			dataType:"json",
 			traditional: true,
 			success:function(data,status){
-				console.log(data);
-				console.log(status);
+				// console.log(data);
+				// console.log(status);
 				if(data.success){
 					alert("Registered user with id" + data.result.id);
 				}else{
@@ -117,8 +117,8 @@ $(document).ready(function() {
 					dataType:"json",
 					traditional: true,
 					success:function(data,status){
-						console.log(data);
-						console.log(status);
+						// console.log(data);
+						// console.log(status);
 						if(data.success){
 							alert("Updated user id:" + data.result.id + "to access level:" + data.result.access_level);
 						}else{
@@ -170,6 +170,7 @@ $(document).ready(function() {
 		});
 		var firstSheet = workbook.SheetNames[0];
 
+
 		//{range:2} will skip the first two rows
 		var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:2});
 		//var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:2});
@@ -177,6 +178,8 @@ $(document).ready(function() {
 		for(var i = 0; i < excelRows.length; i++){
 			if(excelRows[i] != undefined){
 				console.log(excelRows[i]);
+				var row = {"row" : excelRows[i]};
+				console.log(row);
 			}
 		}
 	}
