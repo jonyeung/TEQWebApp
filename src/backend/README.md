@@ -70,14 +70,14 @@ example:
 POST `/changeAccess`
 
 query:
--access_level: string
--id: int
+- access_level: string
+- id: int
 
 return value:
--success: boolean
--result: object (only if the operation is successful)
-  -ID: int
-  -access_level: string
+- success: boolean
+- result: object (only if the operation is successful)
+  - ID: int
+  - access_level: string
 
 example:
 ```
