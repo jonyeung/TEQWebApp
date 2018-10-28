@@ -58,7 +58,7 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 
     changeUserAccessLevel: function(access_level, id) {
         const query = 'update users set access_level = ? where id = ?'
@@ -69,7 +69,7 @@ module.exports = {
                     reject(err)
                 } else {
                     resolve({
-                        id: id
+                        id: id,
                         access_level: access_level
                     })
                 }
