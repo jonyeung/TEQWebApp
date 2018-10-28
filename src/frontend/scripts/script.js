@@ -171,18 +171,28 @@ $(document).ready(function() {
 
 		//{range:i} will skip the first i row
 		//var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:1});
-		var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:2});
+		var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:1});
 
 		for(var i = 1; i < excelRows.length; i++){
 			if(excelRows[i] != undefined){
 				console.log(excelRows[i]);
-				var row = {"row" : excelRows[i]};
-				console.log(row);
+				var data = {"row" : excelRows[i]};
+
+				for (var key in data["row"]){
+					if(data["row"][key] == "Yes"){
+						data["row"][key] = 1;
+					}else if (data["row"][key] == "No"){
+						data["row"][key] = 0;
+					}
+				}
+				data["row"] = JSON.stringify(data["row"]);
+				console.log(data);
+
 
 				$.ajax({
 					type:"POST",
 					url: "https://c01.mechanus.io/insertRow",
-					data: row,
+					data: data,
 					error: function(){
 						alert("Excel processing is unsuccessful.");
 					},
