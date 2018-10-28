@@ -69,7 +69,7 @@ module.exports = {
                     reject(err)
                 } else {
                     resolve({
-                        id: id
+                        id: id,
                         access_level: access_level
                     })
                 }
