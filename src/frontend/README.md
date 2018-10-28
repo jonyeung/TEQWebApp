@@ -1,1 +1,0 @@
-# frontend code and scripts

@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express();
+const cors = require("cors")
+
 const user = require('./modules/user')
+const agency = require('./modules/agency')
 
 app.use(express.urlencoded());
+app.use(express.json());
+app.use(cors());
 
 app.get('/', function(req, res) {
     res.json({
@@ -48,6 +53,40 @@ app.get('/authenticate', function(req, res) {
 
 app.get('/user', function(req, res) {
     user.getUsers()
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
+app.post('/changeAccess', function(req,res) {
+    const {access_level, id} = req.query
+    user.changeUserAccessLevel(access_level, id)
+        .then((result) =>{
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
+app.post('/insertRow', function(req, res) {
+    const {row} = req.body;
+    agency.insertRow(row)
         .then((result) => {
             res.json({
                 success: true,
