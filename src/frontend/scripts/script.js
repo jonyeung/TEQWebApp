@@ -49,8 +49,6 @@ $(document).ready(function() {
 			dataType:"json",
 			traditional: true,
 			success:function(data,status){
-				console.log(data);
-				console.log(status);
 				if(data.success){
 					alert("Registered user with id" + data.result.id);
 				}else{
@@ -73,8 +71,6 @@ $(document).ready(function() {
 		success:function(data,status){
 			if(data.success){
 				$(data.result.users).each(function(index){
-					console.log(this.ID + this.username);
-					
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
 					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' + 
 					generateDropdown(this.ID) + '</td></tr>';
@@ -103,6 +99,7 @@ $(document).ready(function() {
 			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
 				var id = $(this).attr('id')
 				var accessLevel = $(this).val();
+				console.log(id + accessLevel)
 				$.ajax({
 					type:"POST",
 					url: "https://c01.mechanus.io/changeAccess",
@@ -116,8 +113,8 @@ $(document).ready(function() {
 					dataType:"json",
 					traditional: true,
 					success:function(data,status){
-						console.log(data);
-						console.log(status);
+						// console.log(data);
+						// console.log(status);
 						if(data.success){
 							alert("Updated user id: " + data.result.id + " to access level: " + data.result.access_level);
 							location.reload();
@@ -130,4 +127,134 @@ $(document).ready(function() {
 		})
 	});
 
+	// upload data function
+	$("button#uploadButton").on("click", function(){	
+		var file = $("input#uploadedFile")[0];
+		var result = {};
+		if($("select#templateTypeSelect :selected").val() == ""){
+			alert("Please select a template type.");
+			return;
+		}
+		// validate whether file is valid excel file
+		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+        if (regex.test(file.value.toLowerCase())) {
+        	//alert("is excel file"); 
+			var reader = new FileReader();
+            if (reader.readAsBinaryString) {
+                reader.onload = function (e) {
+                    processExcel(e.target.result);
+                };
+                reader.readAsBinaryString(file.files[0]);
+            } else {
+                //For IE Browser.
+                reader.onload = function (e) {
+                    var data = "";
+                    var bytes = new Uint8Array(e.target.result);
+                    for (var i = 0; i < bytes.byteLength; i++) {
+                        data += String.fromCharCode(bytes[i]);
+                    }
+                    processExcel(data);
+                };
+                reader.readAsArrayBuffer(file.files[0]);
+            }
+        }else{
+        	alert("Invalid format, please upload files in excel format (.xls) or (.xlsx)");
+        	return;
+        }
+
+	});
+
+	function processExcel(data){
+		var workbook = XLSX.read(data,{
+			type: 'binary'
+		});
+		// only read the first sheet
+		var firstSheet = workbook.SheetNames[0];
+		var formType = $("select#templateTypeSelect :selected").val();
+
+		//{range:i} will skip the first i row
+		//var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:1});
+		var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:1});
+
+		for(var i = 1; i < excelRows.length; i++){
+			if(excelRows[i] != undefined){
+				console.log(excelRows[i]);
+				var data = excelRows[i];
+
+				data = cleanData(data, formType);
+				data = {"row" : data};
+				console.log(data);
+
+
+				$.ajax({
+					type:"POST",
+					url: "https://c01.mechanus.io/insertRow",
+					data: JSON.stringify(data),
+					error: function(){
+						alert("Excel processing is unsuccessful.");
+					},
+					dataType:"json",
+					contentType:"application/json",
+					traditional: true,
+					success:function(data,status){
+						// console.log(data);
+						// console.log(status);
+						if(data.success){
+							alert("Data uploaded" );
+						}else{
+							alert("Could not upload data, please try again");
+						}
+					}
+				})
+
+			}
+		}
+	}
 });
+
+function cleanData(data, formType){
+	for (var key in data){
+		if(data[key] == "Yes"){
+			data[key] = 1;
+		}else if (data[key] == "No"){
+			data[key] = 0;
+		}
+		if(formType == "profile"){
+			data["preferred_official_lang_id"] = data["official_language_id"];
+			delete data["official_language_id"];
+		}else if(formType == "needs_access"){
+			data["preferred_official_lang_id"] = data["preferred_official_language_id"];
+			delete data["preferred_official_language_id"];
+			data["service_lang_id"] = data["assessment_language_id"];
+			delete data["assessment_language_id"];
+			delete data["childminding_required_ind"];
+			delete data["transportation_required_ind"];
+			delete data["support_disability_required_ind"];
+			delete data["translation_required_ind"];
+			delete data["interpretation_required_ind"];
+			delete data["counselling_required_ind"];
+		}else if(formType == "info_ori"){
+			data["preferred_official_lang_id"] = data["service_official_language_id"];
+			delete data["service_official_language_id"];
+			data["service_lang_id"] = data["service_language_id"];
+			delete data["service_language_id"];
+			data["assessment_referral_id"] = data["service_referred_by_id"];
+			delete data["service_referred_by_id"];
+			data["training_received_life_skills_ind"] = data["essential_skill_life_ind"];
+			delete data["essential_skill_life_ind"];
+		}else if(formType == "employ_services"){
+			data["preferred_official_lang_id"] = data["session_official_lang_id"];
+			delete data["session_official_lang_id"];
+			data["service_lang_id"] = data["session_service_lang_id"];
+			delete data["session_service_lang_id"];
+		}else if(formType == "lt_setup"){
+			data["transportation_ind"] = data["available_transportation_ind"];
+			delete data["available_transportation_ind"];
+			data["childminding_ind"] = data["available_childminding_ind"];
+			delete data["available_childminding_ind"];
+			data["support_disablility_ind"] = data["available_support_disability_ind"];
+			delete data["available_support_disability_ind"];
+		}
+	}	
+	return data;
+}

@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <script src="scripts/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
     <title>Upload Data</title>
 </head>
 
@@ -22,7 +23,7 @@
     <div id="uploadDataDiv">
         <div>
           <label for="templateType">Template Type</label>
-          <select id="userTypeSelect" name="usertype">
+          <select id="templateTypeSelect" name="templatetype">
             <option value="" disabled selected>Pick a template type from the dropdown list...</option>
             <option value="profile">Client Profile</option>
             <option value="needs_access">Needs Accessments & Referrals </option>
@@ -34,7 +35,11 @@
             <option value="lt_exit">LT Client Exit</option>
           </select>
         </div>
-        <input id="fileSelection" type="file"/>
+        <input id="uploadedFile" type="file"/>
+
+        <div id="uploadButtonDiv">
+            <button type="submit" id="uploadButton">Upload</button>
+        </div>
     </div>    
 
 </main>
