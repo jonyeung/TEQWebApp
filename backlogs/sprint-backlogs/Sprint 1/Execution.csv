@@ -1,0 +1,14 @@
+User Story,Task,Dependencies,Story Points,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+U1,T1,,1,Z:1,,,,,,
+,T2,T1,2,,J:2,,,,,
+,T3,T2,2,,,Z:2,,,,
+,T4,,3,,M: 2,M: 1,,,,
+,T5,,2,,M: 1,M: 1,,,,
+,T6,T3 - T5,3,,,,,A:3,,
+U2,T7,,3,,,,Z:3,,,
+,T8,,3,,,,D:3,,,
+,T9,"T7, T8",2,,,,,,A:2,
+U3,T10,,2,,,,,J:2,,
+,T11,,2,,,,,,D:2,
+,T12,"T10, T11",1,,,,,,,J:1
+,,,26,,,,,,,

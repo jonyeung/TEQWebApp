@@ -97,19 +97,18 @@ $(document).ready(function() {
 	$("button#saveButton").on("click", function(){
 		$('.changeLevelDropdown').each(function() {
 			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
-				alert($(this).find('option:selected').text());
 				var id = $(this).attr('id')
 				var accessLevel = $(this).val();
 				console.log(id + accessLevel)
 				$.ajax({
-					type:"GET",
-					url: "https://c01.mechanus.io/user",
+					type:"POST",
+					url: "https://c01.mechanus.io/changeAccess",
 					data: ({
 						access_level : accessLevel,
 						id: id
 					}),
 					error: function(){
-						alert("User access update error");
+						alert("User access level update error");
 					},
 					dataType:"json",
 					traditional: true,
@@ -117,7 +116,8 @@ $(document).ready(function() {
 						// console.log(data);
 						// console.log(status);
 						if(data.success){
-							alert("Updated user id:" + data.result.id + "to access level:" + data.result.access_level);
+							alert("Updated user id: " + data.result.id + " to access level: " + data.result.access_level);
+							location.reload();
 						}else{
 							alert("Could not update user, please select a new access level");
 						}

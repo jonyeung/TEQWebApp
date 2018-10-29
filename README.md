@@ -1,13 +1,10 @@
 # C01 Bird Course Project
 
-Welcome to our project page! 
+Welcome to our project page! Please see Documents/Deliverable_1_v01.pdf for an introduction to the team.
 
-# Deliverable 1
-Please see Deliverable_1_v00.pdf for information about the team and each individual.
+# Navigating the Repo
+The src is divided into two sub-directories: backend and frontend. The frontend contains all our HTML pages along with the jQuery scripts and styling sheets.
+The backend contains all our backend APIs powered by Node.js.
 
-# Deliverable 2
-Please see the product-backlog directory.
-
-	The personas can be found in Personas_v00.pdf.
-
-	The user stories can be found in User_Stories_v00.pdf.
+# Project Planning
+Please see the backlogs directory for information regarding the direction of the project. Under product-backlogs you can find our personas and user stories we have created for this project. Under the sprint-backlogs directory you can find the corresponding sprint plan, execution, and burndown chart filed under each sprint's corresponding folder.
