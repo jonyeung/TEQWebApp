@@ -20,7 +20,7 @@ return value:
   - id: int
 - error: object (only if the operation has failed)
 
-exmaple:
+example:
 ```
 ➜  backend git:(backend) ✗ curl -d 'username=donaldtrump&password=americaisgreat&access_level=TEQ_mid_level' -X POST localhost:8080/user
 {"success":true,"result":{"id":15}}
