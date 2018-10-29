@@ -131,6 +131,10 @@ $(document).ready(function() {
 	$("button#uploadButton").on("click", function(){	
 		var file = $("input#uploadedFile")[0];
 		var result = {};
+		if($("select#templateTypeSelect :selected").val() == ""){
+			alert("Please select a template type.");
+			return;
+		}
 		// validate whether file is valid excel file
 		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
         if (regex.test(file.value.toLowerCase())) {
@@ -177,28 +181,7 @@ $(document).ready(function() {
 				console.log(excelRows[i]);
 				var data = excelRows[i];
 
-				for (var key in data){
-					if(data[key] == "Yes"){
-						data[key] = 1;
-					}else if (data[key] == "No"){
-						data[key] = 0;
-					}
-					if(formType == "profile"){
-						data["preferred_official_lang_id"] = data["official_language_id"];
-						delete data["official_language_id"];
-					}else if(formType == "needs_access"){
-						data["preferred_official_lang_id"] = data["preferred_official_language_id"];
-						delete data["preferred_official_language_id"];
-						data["service_lang_id"] = data["assessment_language_id"];
-						delete data["assessment_language_id"];
-					}else if(formType == "info_ori"){
-						data["preferred_official_lang_id"] = data["service_official_language_id"];
-						delete data["service_official_language_id"];
-					}else if(formType == "employ_services"){
-						data["preferred_official_lang_id"] = data["session_official_lang_id"];
-						delete data["session_official_lang_id"];
-					}
-				}
+				data = cleanData(data, formType);
 				data = {"row" : data};
 				console.log(data);
 
@@ -228,3 +211,50 @@ $(document).ready(function() {
 		}
 	}
 });
+
+function cleanData(data, formType){
+	for (var key in data){
+		if(data[key] == "Yes"){
+			data[key] = 1;
+		}else if (data[key] == "No"){
+			data[key] = 0;
+		}
+		if(formType == "profile"){
+			data["preferred_official_lang_id"] = data["official_language_id"];
+			delete data["official_language_id"];
+		}else if(formType == "needs_access"){
+			data["preferred_official_lang_id"] = data["preferred_official_language_id"];
+			delete data["preferred_official_language_id"];
+			data["service_lang_id"] = data["assessment_language_id"];
+			delete data["assessment_language_id"];
+			delete data["childminding_required_ind"];
+			delete data["transportation_required_ind"];
+			delete data["support_disability_required_ind"];
+			delete data["translation_required_ind"];
+			delete data["interpretation_required_ind"];
+			delete data["counselling_required_ind"];
+		}else if(formType == "info_ori"){
+			data["preferred_official_lang_id"] = data["service_official_language_id"];
+			delete data["service_official_language_id"];
+			data["service_lang_id"] = data["service_language_id"];
+			delete data["service_language_id"];
+			data["assessment_referral_id"] = data["service_referred_by_id"];
+			delete data["service_referred_by_id"];
+			data["training_received_life_skills_ind"] = data["essential_skill_life_ind"];
+			delete data["essential_skill_life_ind"];
+		}else if(formType == "employ_services"){
+			data["preferred_official_lang_id"] = data["session_official_lang_id"];
+			delete data["session_official_lang_id"];
+			data["service_lang_id"] = data["session_service_lang_id"];
+			delete data["session_service_lang_id"];
+		}else if(formType == "lt_setup"){
+			data["transportation_ind"] = data["available_transportation_ind"];
+			delete data["available_transportation_ind"];
+			data["childminding_ind"] = data["available_childminding_ind"];
+			delete data["available_childminding_ind"];
+			data["support_disablility_ind"] = data["available_support_disability_ind"];
+			delete data["available_support_disability_ind"];
+		}
+	}	
+	return data;
+}
