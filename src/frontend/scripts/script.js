@@ -128,8 +128,7 @@ $(document).ready(function() {
 	});
 
 	// upload data function
-	$("button#uploadButton").on("click", function(){
-		var formType = $("select#templateTypeSelect :selected").val();
+	$("button#uploadButton").on("click", function(){	
 		var file = $("input#uploadedFile")[0];
 		var result = {};
 		// validate whether file is valid excel file
@@ -167,7 +166,7 @@ $(document).ready(function() {
 		});
 		// only read the first sheet
 		var firstSheet = workbook.SheetNames[0];
-
+		var formType = $("select#templateTypeSelect :selected").val();
 
 		//{range:i} will skip the first i row
 		//var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:1});
@@ -176,27 +175,43 @@ $(document).ready(function() {
 		for(var i = 1; i < excelRows.length; i++){
 			if(excelRows[i] != undefined){
 				console.log(excelRows[i]);
-				var data = {"row" : excelRows[i]};
+				var data = excelRows[i];
 
-				for (var key in data["row"]){
-					if(data["row"][key] == "Yes"){
-						data["row"][key] = 1;
-					}else if (data["row"][key] == "No"){
-						data["row"][key] = 0;
+				for (var key in data){
+					if(data[key] == "Yes"){
+						data[key] = 1;
+					}else if (data[key] == "No"){
+						data[key] = 0;
+					}
+					if(formType == "profile"){
+						data["preferred_official_lang_id"] = data["official_language_id"];
+						delete data["official_language_id"];
+					}else if(formType == "needs_access"){
+						data["preferred_official_lang_id"] = data["preferred_official_language_id"];
+						delete data["preferred_official_language_id"];
+						data["service_lang_id"] = data["assessment_language_id"];
+						delete data["assessment_language_id"];
+					}else if(formType == "info_ori"){
+						data["preferred_official_lang_id"] = data["service_official_language_id"];
+						delete data["service_official_language_id"];
+					}else if(formType == "employ_services"){
+						data["preferred_official_lang_id"] = data["session_official_lang_id"];
+						delete data["session_official_lang_id"];
 					}
 				}
-				data["row"] = JSON.stringify(data["row"]);
+				data = {"row" : data};
 				console.log(data);
 
 
 				$.ajax({
 					type:"POST",
 					url: "https://c01.mechanus.io/insertRow",
-					data: data,
+					data: JSON.stringify(data),
 					error: function(){
 						alert("Excel processing is unsuccessful.");
 					},
 					dataType:"json",
+					contentType:"application/json",
 					traditional: true,
 					success:function(data,status){
 						// console.log(data);
