@@ -213,10 +213,8 @@ $(document).ready(function() {
 
 	loadFilterButtons();
 	var localAgencyData = agencyData;
-	var colomnNameData = Object.keys(agencyData);
+	var colomnNameData = Object.keys(localAgencyData);
 	var selectedFilters = [];
-	console.log(localAgencyData);
-	console.log(colomnNameData);
 
 	$("button[class=filterOptions]").on("click", function(event){
 		$("ol#selectable").empty();
