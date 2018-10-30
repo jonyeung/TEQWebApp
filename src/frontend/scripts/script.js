@@ -21,6 +21,7 @@ $(document).ready(function() {
 				console.log(status);
 				if(data.result.authenticated){
 					alert("Successfully logged in as " + data.result.user.access_level);
+					window.location.href = "dashboard.html";
 				}else{
 					alert("Username/password does not match,please try again.")
 				}	
