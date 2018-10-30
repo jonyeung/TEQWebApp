@@ -5,6 +5,7 @@
 
   <link rel="stylesheet" type="text/css" href="styles/styles.css">
   <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
   <script type="text/javascript" src="scripts/script.js"></script>
   <script type="text/javascript" src="scripts/agencyData.json"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
@@ -27,15 +28,25 @@
 
 <main>
   <label id="addFilterSearchText" for="searchFilterOptions">Search for colomn name:</label>
-  <div class="searchBar">
-    <input type="text" id="queryInput" onkeyup="myFunction()" placeholder="Search ...">
+  <div class="searchBar ui-widget">
+    <input type="text" id="queryInput" placeholder="Search ...">
     <button id="addFilterButton">Add Filter</button>
+    <button id="applyFilterButton">Apply Filter</button>
+    <div id="dropdownList" class="dropdownContent"></div>
   </div>
+  <label for="selectedFilters">Selected Filters:</label>
+  <button id="clearFilterButton">Clear Filter</button>
+  <div id="selectedFilters"></div>
+  <label for="filteringByFirstLetter">Filter by first letter:</label>
   <div id="filterByLetter"></div>
-  <div src="../assets/colomns.xlsx" id="excelFilePath">
+  <div id="filterByLetterOptions">
+    <ol id="selectable"></ol>
+  </div>
+  
 </main>
 
+
+</body>
 <footer>
 </footer>
-</body>
 </html>

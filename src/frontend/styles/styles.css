@@ -170,14 +170,54 @@ th, td {
   background-image: url('../assets/searchicon.png'); /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 60%; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 12px 20px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
+  width: 40%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px; 
+  border: 1px solid #ddd; 
 }
+
 label#addFilterSearchText{
   width:100%;
 }
 .filterOptions{
   margin: 3px;
+}
+
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#selectable li { margin: 1px; padding: 0.4em; font-size: 1em; height: 15px; }
+
+button.colomnNamesList{
+  background-color: #25a3a3;
+}
+#selectedFilters{
+  width: 60%;
+}
+#selectedFilters button{
+  background-color: #25a3a3;
+  border: 2px solid;
+  border-color: #2196F3;
+}
+
+.ui-menu {
+  list-style:none;
+  padding: 10px;
+  margin: 0;
+  display:block;
+  width:227px;
+}
+
+.ui-menu .ui-menu {
+  margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+  margin:0;
+  padding: 1px;
+}
+.ui-menu li{
+  cursor: pointer
+}
+.ui-helper-hidden-accessible{
+  display: none;
 }
