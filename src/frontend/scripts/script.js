@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	// user sign-in
 	$("button#loginBtn").on("click", function(){
@@ -211,7 +210,17 @@ $(document).ready(function() {
 			}
 		}
 	}
+
+	loadFilterButtons();
+	var localAgencyData = agencyData;
+	var colomnNameData = Object.values(agencyData);
+	console.log(localAgencyData);
+	console.log(colomnNameData);
+
 });
+
+
+
 
 function cleanData(data, formType){
 	for (var key in data){
@@ -259,3 +268,17 @@ function cleanData(data, formType){
 	}	
 	return data;
 }
+
+function loadFilterButtons(){
+	var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var buttons = '';
+	for (var i = 0; i < alphabet.length; i++) {
+		id = "filter" + alphabet.charAt(i);
+  		buttons += '<button class="filterOptions" id='+id+'>'+ alphabet.charAt(i)+'</button>';
+	}
+
+	$("div#filterByLetter").append(buttons);
+}
+
+
+

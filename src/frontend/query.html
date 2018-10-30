@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/script.js"></script>
+  <script type="text/javascript" src="scripts/agencyData.json"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+
+
+  <meta charset="utf-8">
+
+  <title>Query Data</title>
+
+</head>
+
+<body>
+<header>
+  <h1>
+    <span id="teqHead">Toronto East Quadrant</span>
+    <br>
+    <span id="lipHead">Local Immigration Partnership</span>
+  </h1>
+</header>
+
+<main>
+  <label id="addFilterSearchText" for="searchFilterOptions">Search for colomn name:</label>
+  <div class="searchBar">
+    <input type="text" id="queryInput" onkeyup="myFunction()" placeholder="Search ...">
+    <button id="addFilterButton">Add Filter</button>
+  </div>
+  <div id="filterByLetter"></div>
+  <div src="../assets/colomns.xlsx" id="excelFilePath">
+</main>
+
+<footer>
+</footer>
+</body>
+</html>
