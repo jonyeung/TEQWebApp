@@ -156,3 +156,12 @@ th, td {
   overflow: auto;
   white-space:nowrap;
 }
+
+/*Dashboard page styling*/
+.dashboardButton {
+  display:inline-block;
+}
+
+#logoutFooter {
+  padding-top: 200px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="scripts/script.js"></script>
+
+  <meta charset="utf-8">
+
+  <title>Dashboard</title>
+
+</head>
+
+<body>
+<header>
+  <h1>
+    <span id="teqHead">Toronto East Quadrant</span>
+    <br>
+    <span id="lipHead">Local Immigration Partnership</span>
+  </h1>
+</header>
+
+<main>
+  <div id="dashboardCenter">
+    <h2 id="loggedInAccessLevel">You are logged in as a:</h2>
+
+  <div id="dashboardOptions">
+        <button id="uploadDataBtn" class="dashboardButton" onclick="window.location.href='upload_data.html'">Upload an iCARE Template</button>
+        <button id="queryDataBtn" class="dashboardButton" onclick="window.location.href='data_list.html'">Query the Data</button>
+        <button id="registerUserBtn" class="dashboardButton" onclick="window.location.href='registration.html'">Register a New User</button>
+        <button id="changeUserBtn" class="dashboardButton" onclick="window.location.href='userlist.html'">Change User Permissions</button>
+  </div>
+
+  <div id="logoutFooter">
+    <button id="logoutBtn" class="dashboardButton" onclick="window.location.href='index.html'">Logout</button>
+  </div>
+</main>
+
+<footer>
+</footer>
+</body>
+</html>
