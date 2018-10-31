@@ -1,3 +1,9 @@
+var UserSession = {
+	active: false,
+	username: "",
+	userLevel: ""
+};
+
 $(document).ready(function() {
 	// user sign-in
 	$("button#loginBtn").on("click", function(){
@@ -21,9 +27,12 @@ $(document).ready(function() {
 				if(data.result.authenticated){
 					alert("Successfully logged in as " + data.result.user.access_level);
 					window.location.href = "dashboard.html";
+					UserSession.active = true;
+					UserSession.username = username.toString();
+					UserSession.userLevel = (data.result.user.access_level).toString();
 				}else{
 					alert("Username/password does not match,please try again.")
-				}	
+				}
 			}
 		});
 		return false;
@@ -72,12 +81,12 @@ $(document).ready(function() {
 			if(data.success){
 				$(data.result.users).each(function(index){
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
-					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' + 
+					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' +
 					generateDropdown(this.ID) + '</td></tr>';
 
 					function generateDropdown(id) {
-						var dropdown = '<select class="changeLevelDropdown" id="'+id+'" name="usertype"><option value=""' + 
-						'disabled selected>Pick a user type from the dropdown list...</option>' + 
+						var dropdown = '<select class="changeLevelDropdown" id="'+id+'" name="usertype"><option value=""' +
+						'disabled selected>Pick a user type from the dropdown list...</option>' +
 						'<option value="support_agency">Support Agency</option><option value="TEQ_low_level">TEQ Low Level</option>'+
 						'<option value="TEQ_mid_level">TEQ Mid Level</option><option value="TEQ_high_level">TEQ High Level</option>'+
 						'<option value="UTSC_staff">UTSC Project Staff</option></select>'
@@ -128,7 +137,7 @@ $(document).ready(function() {
 	});
 
 	// upload data function
-	$("button#uploadButton").on("click", function(){	
+	$("button#uploadButton").on("click", function(){
 		var file = $("input#uploadedFile")[0];
 		var result = {};
 		if($("select#templateTypeSelect :selected").val() == ""){
@@ -138,7 +147,7 @@ $(document).ready(function() {
 		// validate whether file is valid excel file
 		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
         if (regex.test(file.value.toLowerCase())) {
-        	//alert("is excel file"); 
+        	//alert("is excel file");
 			var reader = new FileReader();
             if (reader.readAsBinaryString) {
                 reader.onload = function (e) {
@@ -307,7 +316,7 @@ function cleanData(data, formType){
 			data["support_disablility_ind"] = data["available_support_disability_ind"];
 			delete data["available_support_disability_ind"];
 		}
-	}	
+	}
 	return data;
 }
 
@@ -329,4 +338,3 @@ function updateSelectedFilters(filters){
 	}
 	$("div#selectedFilters").append(buttons);
 }
-
