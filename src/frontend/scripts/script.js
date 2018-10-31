@@ -1,4 +1,18 @@
 $(document).ready(function() {
+
+	// If there is no valid user signed in, then redirect to login
+	$(window).on("load", function() {
+		if(($(".loginDiv").length <= 0) && (sessionStorage.userLevel == null)) {
+			alert("Please sign in to a valid account.");
+			document.location.href = "index.html";
+		}
+	});
+
+	// Header click redirects to dashboard.
+	$("header").not("#loginHeader").on("click", function() {
+		document.location.href = "dashboard.html";
+	});
+
 	// user sign-in
 	$("button#loginBtn").on("click", function(){
 		var username = $("#loginUsername[name=username]").val();
@@ -358,7 +372,8 @@ function setDashboard(userLevel) {
 		} else if (userLevel == "UTSC_staff") {
 			levelName = "UTSC Project Staff";
 		} else {
-			alert("Error: User type is not supported");
+			alert("Error: User type is not supported, please sign in with a valid account.");
+			document.location.href = "index.html";
 		}
 		$("#loggedInAccessLevel").text("You are logged in as a: " + levelName);
 		// If the user is a support agency staff then only allow upload.
