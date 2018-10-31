@@ -31,6 +31,11 @@ $(document).ready(function() {
 		return false;
 	});
 
+	// logout, clears session data
+	$("button#logoutBtn").on("click", function(){
+		sessionStorage.clear();
+	});
+
 	// register users
 	$("button#registerBtn").on("click", function(){
 		var username = $("#regUsername[name=username]").val();
@@ -335,14 +340,12 @@ function updateSelectedFilters(filters){
 // Runs everytime the Dashboard page is loaded.
 $(window).on("load", function() {
 	if($("#dashboardCenter").length > 0) {
-		alert(sessionStorage.getItem("username") + " ; " + sessionStorage.getItem("userLevel"));
 		setDashboard(sessionStorage.getItem("userLevel"));
 	}
 });
 
 // Sets the information displayed on the dashboard based on userlevel.
 function setDashboard(userLevel) {
-		alert(userLevel);
 		var levelName = "";
 		if (userLevel == "support_agency") {
 			levelName = "Support Agency";
@@ -358,4 +361,20 @@ function setDashboard(userLevel) {
 			alert("Error: User type is not supported");
 		}
 		$("#loggedInAccessLevel").text("You are logged in as a: " + levelName);
+		// If the user is a support agency staff then only allow upload.
+		if (userLevel == "support_agency") {
+			$("#queryDataBtn").prop('disabled', true);
+			$("#registerUserBtn").prop('disabled', true);
+			$("#changeUserBtn").prop('disabled', true);
+			$("#queryDataBtn").hide();
+			$("#registerUserBtn").hide();
+			$("#changeUserBtn").hide();
+		} else {
+			$("#queryDataBtn").prop('disabled', false);
+			$("#registerUserBtn").prop('disabled', false);
+			$("#changeUserBtn").prop('disabled', false);
+			$("#queryDataBtn").show();
+			$("#registerUserBtn").show();
+			$("#changeUserBtn").show();
+		}
 }
