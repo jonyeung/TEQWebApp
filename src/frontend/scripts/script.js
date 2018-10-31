@@ -1,9 +1,3 @@
-var UserSession = {
-	active: false,
-	username: "",
-	userLevel: ""
-};
-
 $(document).ready(function() {
 	// user sign-in
 	$("button#loginBtn").on("click", function(){
@@ -27,9 +21,8 @@ $(document).ready(function() {
 				if(data.result.authenticated){
 					alert("Successfully logged in as " + data.result.user.access_level);
 					window.location.href = "dashboard.html";
-					UserSession.active = true;
-					UserSession.username = username.toString();
-					UserSession.userLevel = (data.result.user.access_level).toString();
+					sessionStorage.setItem("username", username.toString());
+					sessionStorage.setItem("userLevel", (data.result.user.access_level).toString());
 				}else{
 					alert("Username/password does not match,please try again.")
 				}
@@ -337,4 +330,32 @@ function updateSelectedFilters(filters){
 		buttons += '<button class="selectedFilters">' + filters[i] + '</button>';
 	}
 	$("div#selectedFilters").append(buttons);
+}
+
+// Runs everytime the Dashboard page is loaded.
+$(window).on("load", function() {
+	if($("#dashboardCenter").length > 0) {
+		alert(sessionStorage.getItem("username") + " ; " + sessionStorage.getItem("userLevel"));
+		setDashboard(sessionStorage.getItem("userLevel"));
+	}
+});
+
+// Sets the information displayed on the dashboard based on userlevel.
+function setDashboard(userLevel) {
+		alert(userLevel);
+		var levelName = "";
+		if (userLevel == "support_agency") {
+			levelName = "Support Agency";
+		} else if (userLevel == "TEQ_low_level") {
+			levelName = "TEQ Low Level";
+		} else if (userLevel == "TEQ_mid_level") {
+			levelName = "TEQ Mid Level";
+		} else if (userLevel == "TEQ_high_level") {
+			levelName = "TEQ High Level";
+		} else if (userLevel == "UTSC_staff") {
+			levelName = "UTSC Project Staff";
+		} else {
+			alert("Error: User type is not supported");
+		}
+		$("#loggedInAccessLevel").text("You are logged in as a: " + levelName);
 }
