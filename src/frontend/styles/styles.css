@@ -84,6 +84,10 @@ select {
   border-style: solid;
 }
 
+header:not(#loginHeader) {
+  cursor: pointer;
+}
+
 /* Header Style */
 #teqHead {
   color: #F2692D;
@@ -172,8 +176,8 @@ th, td {
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: 40%;
   font-size: 16px;
-  padding: 12px 20px 12px 40px; 
-  border: 1px solid #ddd; 
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
 }
 
 label#addFilterSearchText{
