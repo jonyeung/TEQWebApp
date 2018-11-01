@@ -81,7 +81,8 @@ return value:
 
 example:
 ```
-➜  
+➜  backend git:(backend) ✗ curl 'localhost:8080/chanceAccess?id=22&access_level=TEQ_mid_level' -X POST localhost:8080/user
+{"success":true,"result":{"id":15,"access_level":"TEQ_mid_level"}}
 ```
 
 

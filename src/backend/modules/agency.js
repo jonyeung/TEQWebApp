@@ -31,4 +31,34 @@ module.exports = {
             })
         })
     }
+
+
+    retrieveData: function(columns) {
+        var isFirstField = true
+        var fieldPlaceholders = ''
+        var fields = []
+
+        for (var column of columns) {
+            if(!isFirstField) {
+                fieldPlaceholders += ', '
+            }
+            fieldPlaceholders += '?'
+            fields.push(column)
+            isFirstField = false
+        }
+
+
+        var query = `select (${fieldPlaceholders}) from AgencyData`
+        return new Promise((resolve, reject) => {
+            con.query(query, fields, function (err, result) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve ({
+                        result
+                    })
+                }
+            })
+        })
+    }
 }
