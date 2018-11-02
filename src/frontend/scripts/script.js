@@ -317,7 +317,14 @@ function setDashboard(userLevel) {
 			$("#queryDataBtn").hide();
 			$("#registerUserBtn").hide();
 			$("#changeUserBtn").hide();
-		} else {
+		} 
+		else if (userLevel == "TEQ_low_level" || userLevel == "TEQ_mid_level") {
+			$("#registerUserBtn").prop('disabled', true);
+			$("#changeUserBtn").prop('disabled', true);
+			$("#registerUserBtn").hide();
+			$("#changeUserBtn").hide();
+		}
+		else {
 			$("#queryDataBtn").prop('disabled', false);
 			$("#registerUserBtn").prop('disabled', false);
 			$("#changeUserBtn").prop('disabled', false);
