@@ -109,3 +109,29 @@ example:
 ➜  backend git:(backend) ✗ curl -d '{"row": { "Processing_Details": "[BUID:305939,RID:,ORP:4/5,DTS:2018-08-07 10:05:04][1] (Client) Unable to validate against database. / (Client) Impossible de valider dans la base de données.", "Unique_Identifier": "FOSS/GCMS Client ID", "Unique_Identifier_Value": 12345678, "Date_of_Birth": "1978-05-20", "Phone_Number": "902-628-1285", "Does_the_Client_Have_an_Email_Address":1, "Email_Address": "hnestor@cathcrosscultural.org", "Street_Number": 1256, "Street_Name": "College", "Street_Type": "Abbey", "Street_Direction": "E - East", "Unit/Suite/Apt": "205", "City": "Toronto", "Province": "Ontario", "Postal_Code": "M6G3A4", "Official_Language_of_Preference": "English", "Consent_for_Future_Research/Consultation": 1 } }' -H "Content-Type: application/json" localhost:8080/insertRow
 {"success":true,"result":{"result":{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}}}%
 ```
+
+#### retrieve data
+GET `/getColumns`
+
+body: {
+  "columns": {
+      "columnNumber": int,
+      "columnName": string
+  }
+}
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+  - data: array of objects
+    - ID: int
+    - currently_logged_in:int
+    - access_level: string
+- error: object (only if the operation has failed)
+
+example:
+```
+➜  backend git:(backend) ✗ curl -d '{"column": { 1: "Unique_Identifier", 2:"Unique_Identifier_Value", 3:"Street_Number", 4:"Street_Name", 5:"Street_Type", 6:"City", 7:"Province", 8:"Postal_Code"} }' -H "Content-Type: application/json" localhost:8080/getColumns
+{"success":true,"result":{"data":[{"Unique_Identifier":"FOSS/GCMS Client ID","Unique_Identifier_Value":12345678,"Street_Number":1256, "Street_Name":"College","Street_Type":"Abbey", "City":"Toronto", "Province":"Ontario", "Postal_Code":"M6G3A4"}]}}
+```
+}

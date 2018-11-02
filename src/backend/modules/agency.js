@@ -38,12 +38,12 @@ module.exports = {
         var fieldPlaceholders = ''
         var fields = []
 
-        for (var column of columns) {
+        for (let [key, value] of Object.entries(columns)) {
             if(!isFirstField) {
                 fieldPlaceholders += ', '
             }
             fieldPlaceholders += '?'
-            fields.push(column)
+            fields.push(value)
             isFirstField = false
         }
 
@@ -55,7 +55,7 @@ module.exports = {
                     reject(err)
                 } else {
                     resolve ({
-                        result
+                        data: result
                     })
                 }
             })

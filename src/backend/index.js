@@ -101,4 +101,21 @@ app.post('/insertRow', function(req, res) {
         })
 })
 
+app.get('/getColumns', function(req, res) {
+    const {columns} = req.query
+    agency.retrieveData(columns)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
 app.listen(8080)
