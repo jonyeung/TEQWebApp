@@ -60,5 +60,22 @@ module.exports = {
                 }
             })
         })
+    },
+
+    saveQuery: function(query_name, column_list) {
+        const query = 'insert into PresetQueries (query_name, query) values (?, ?)'
+        return new Promise((resolve, reject) => {
+            con.query(query, [query_name, column_list], function(err, result) {
+                if (err) {
+                    console.log(err)
+                    reject(err)
+                } else {
+                    resolve({
+                        result
+                    })
+                }
+            })
+        })
     }
+    
 }

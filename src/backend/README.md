@@ -134,4 +134,20 @@ example:
 ➜  backend git:(backend) ✗ curl -d '{"column": { 1: "Unique_Identifier", 2:"Unique_Identifier_Value", 3:"Street_Number", 4:"Street_Name", 5:"Street_Type", 6:"City", 7:"Province", 8:"Postal_Code"} }' -H "Content-Type: application/json" localhost:8080/getColumns
 {"success":true,"result":{"data":[{"Unique_Identifier":"FOSS/GCMS Client ID","Unique_Identifier_Value":12345678,"Street_Number":1256, "Street_Name":"College","Street_Type":"Abbey", "City":"Toronto", "Province":"Ontario", "Postal_Code":"M6G3A4"}]}}
 ```
-}
+
+#### save query
+POST `/saveQuery`
+
+body:
+- query_name: string
+- column_list: list of strings
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+- error: object (only if the operation is unsuccessful)
+
+example:
+```
+
+```
