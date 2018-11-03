@@ -279,3 +279,7 @@ button.colomnNamesList{
   float: right;
   margin-top: 15%;
 }
+
+li {
+  background-color: #F4F4F4;
+}

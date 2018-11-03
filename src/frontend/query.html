@@ -41,12 +41,14 @@
     <div class="popupContent">
       <span class="close" id="closePopup">&times;</span>
       <h3 class="popupHeader">Save Query to Dashboard</h3>
-      <label for="saveQueryName">Query Name</label>
-      <input type="text" id="saveQueryName" placeholder="Enter a name for this query..." required>
-      <div id="saveCancelButtons">
-        <button id="saveQueryButton">Save</button>
-        <button id="cancelSaveButton">Cancel</button>
-      </div>
+      <form>
+        <label for="saveQueryName">Query Name</label>
+        <input type="text" id="saveQueryName" placeholder="Enter a name for this query..." required>
+        <div id="saveCancelButtons">
+          <button type="submit" id="saveQueryButton">Save</button>
+          <button id="cancelSaveButton">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
   <div id="selectedFilters"></div>
