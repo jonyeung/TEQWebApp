@@ -47,6 +47,18 @@ $(document).ready(function (){
 			updateSelectedFilters(selectedFilters);
 		}
 	});
+
+	$("button#savePopupButton").on("click", function() {
+		$("div#saveQueryPopup").css("display", "block");
+	});
+
+	$("#closePopup").on("click", function() {
+		$("div#saveQueryPopup").css("display", "none");
+	});
+
+	$("button#cancelSaveButton").on("click", function() {
+		$("div#saveQueryPopup").css("display", "none");
+	});
 })
 
 function loadFilterButtons(){

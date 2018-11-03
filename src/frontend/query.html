@@ -27,7 +27,7 @@
 </header>
 
 <main>
-  <label id="addFilterSearchText" for="searchFilterOptions">Search for colomn name:</label>
+  <label id="addFilterSearchText" for="searchFilterOptions">Search for column name:</label>
   <div class="searchBar ui-widget">
     <input type="text" id="queryInput" placeholder="Search ...">
     <button id="addFilterButton">Add Filter</button>
@@ -36,13 +36,26 @@
   </div>
   <label for="selectedFilters">Selected Filters:</label>
   <button id="clearFilterButton">Clear Filter</button>
+  <button id="savePopupButton">Save Query</button>
+  <div class="popup" id="saveQueryPopup">
+    <div class="popupContent">
+      <span class="close" id="closePopup">&times;</span>
+      <h3 class="popupHeader">Save Query to Dashboard</h3>
+      <label for="saveQueryName">Query Name</label>
+      <input type="text" id="saveQueryName" placeholder="Enter a name for this query..." required>
+      <div id="saveCancelButtons">
+        <button id="saveQueryButton">Save</button>
+        <button id="cancelSaveButton">Cancel</button>
+      </div>
+    </div>
+  </div>
   <div id="selectedFilters"></div>
   <label for="filteringByFirstLetter">Filter by first letter:</label>
   <div id="filterByLetter"></div>
   <div id="filterByLetterOptions">
     <ol id="selectable"></ol>
   </div>
-  
+
 </main>
 
 
