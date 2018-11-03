@@ -119,7 +119,8 @@ app.get('/getColumns', function(req, res) {
 })
 
 app.post('/saveQuery', function(req, res) {
-    const {query_name, column_list} = req.body;
+    const {query_name, column_list} = req.body
+    console.log(query_name, column_list)
     agency.saveQuery(query_name, column_list)
         .then((result) => {
             res.json({

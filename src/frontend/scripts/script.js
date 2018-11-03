@@ -232,6 +232,41 @@ $(document).ready(function() {
 		}
 	}
 
+	$("button#saveQueryButton").on("click", function(){
+		var query_name = $("input#saveQueryName").val();
+		var column_list = selectedFilters.join(", ");
+		if (query_name == "") {
+			alert("Please enter a name for the query.")
+			return;
+		} else if (column_list.length < 1) {
+			alert("Please select at least 1 column to query.")
+			return;
+		}
+		console.log(query_name, column_list);
+		
+		$.ajax({
+			type:"POST",
+			url:"https://c01.mechanus.io/saveQuery",
+			data: ({
+				query_name : query_name,
+				column_list : column_list
+			}),
+			error: function(){
+				alert("Query saving error.");
+			},
+			dataType:"json",
+			traditional: true,
+			success:function(data,status){
+				if(data.success){
+					alert(query_name + " has sucessfully been saved.");
+				}else{
+					alert("Query saving failed, please try again.")
+				}
+			}
+		})
+		return false;
+		
+	});
 });
 
 
