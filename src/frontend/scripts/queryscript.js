@@ -59,6 +59,34 @@ $(document).ready(function (){
 	$("button#cancelSaveButton").on("click", function() {
 		$("div#saveQueryPopup").css("display", "none");
 	});
+
+	$("button#applyFilterButton").on("click", function(){
+		var data = [];
+		for (var i = 0;i< selectedFilters.length;i++){
+			data[i] = localAgencyData[selectedFilters[i]];
+		}
+		console.log(data);
+		data = {columns:data}
+		$.ajax({
+			type:"GET",
+			url:"http://localhost:8080/getColumns",
+			data: $.param(data),
+			dataType:"json",
+			traditional:true,
+			error: function(){
+				alert("Error getting column data.");
+			},
+			success:function(data,status){
+				if(data.success){
+					generateColomns(data.result.data);
+				}else{
+					alert("Cannot apply filter.");
+				}
+			}
+		})
+		
+	})
+
 })
 
 function loadFilterButtons(){
@@ -78,4 +106,10 @@ function updateSelectedFilters(filters){
 		buttons += '<button class="selectedFilters">' + filters[i] + '</button>';
 	}
 	$("div#selectedFilters").append(buttons);
+}
+
+function generateColomns(data){
+	$("div#filterByLetterOptions").empty();
+
+	var table = '<table id="dataList">';
 }

@@ -19,7 +19,7 @@ $(document).ready(function() {
 		var password = $("#loginPassword[name=password]").val();
 
 		$.ajax({
-			type:"GET",
+			type:"POST",
 			url: "https://c01.mechanus.io/authenticate",
 			data: ({
 				username : username,
