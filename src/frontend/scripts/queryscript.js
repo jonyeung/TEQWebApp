@@ -61,6 +61,10 @@ $(document).ready(function (){
 	});
 
 	$("button#applyFilterButton").on("click", function(){
+		if(selectedFilters.length == 0){
+			alert("Please select more than one filter");
+			return;
+		}
 		var data = [];
 		for (var i = 0;i< selectedFilters.length;i++){
 			data[i] = localAgencyData[selectedFilters[i]];
@@ -78,7 +82,7 @@ $(document).ready(function (){
 			},
 			success:function(data,status){
 				if(data.success){
-					generateColomns(data.result.data);
+					generateColomns(data.result.data, localAgencyData);
 				}else{
 					alert("Cannot apply filter.");
 				}
@@ -89,6 +93,7 @@ $(document).ready(function (){
 
 })
 
+// function that populates filters when user clicks on a letter
 function loadFilterButtons(){
 	var alphabet = 'ABCDEFGHILMNOPRSTUWY';
 	var buttons = '';
@@ -99,6 +104,7 @@ function loadFilterButtons(){
 	$("div#filterByLetter").append(buttons);
 }
 
+// function that update the list of selected filters after user clicks on a filter
 function updateSelectedFilters(filters){
 	var buttons = '';
 	$("div#selectedFilters").empty();
@@ -108,8 +114,34 @@ function updateSelectedFilters(filters){
 	$("div#selectedFilters").append(buttons);
 }
 
-function generateColomns(data){
-	$("div#filterByLetterOptions").empty();
+// function that generates a table from returned data
+function generateColomns(data, localAgencyData){
+	$("ol#selectable").empty();
+	$("div#generatedTable").empty();
+	// generate headers
+	var table = '<table id="dataList"><tr>';
+	for(let[key,value] of Object.entries(data[0])){
+		table += '<th>' + getKeyByValue(localAgencyData,key) + '</th>'
+	}
+	table += '</tr>';
 
-	var table = '<table id="dataList">';
+	for(var i = 0;i< data.length; i++){
+		table += '<tr>';
+		for(let[key,value] of Object.entries(data[i])){
+			if(value == null){
+				value = 'N/A';
+			}else if (value['type'] == "Buffer"){
+				value = value['data'] == 1 ? 'Yes' : 'No';
+			}
+			table += '<th>' + value + '</th>';
+		}
+		table += '</tr>';
+	}
+	table += '</table>';
+
+	$("div#generatedTable").append(table);
+}
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
 }
