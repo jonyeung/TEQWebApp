@@ -34,23 +34,21 @@ module.exports = {
 
 
     retrieveData: function(columns) {
-        var isFirstField = true
-        var fieldPlaceholders = ''
-        var fields = []
-
-        for (let [key, value] of Object.entries(columns)) {
+        console.log(columns);
+        var query = `select `;
+        for (var i = 0; i < columns.length;i++) {
             if(!isFirstField) {
-                fieldPlaceholders += ', '
+                query += ', '
             }
-            fieldPlaceholders += '?'
-            fields.push(value)
             isFirstField = false
+            query += columns[i]
         }
 
-
-        var query = `select (${fieldPlaceholders}) from AgencyData`
+        // (${fieldPlaceholders}) `
+        query += ` from AgencyData`
+        console.log(query)
         return new Promise((resolve, reject) => {
-            con.query(query, fields, function (err, result) {
+            con.query(query, columns, function (err, result) {
                 if (err) {
                     reject(err)
                 } else {

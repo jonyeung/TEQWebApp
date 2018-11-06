@@ -102,7 +102,7 @@ app.post('/insertRow', function(req, res) {
 })
 
 app.get('/getColumns', function(req, res) {
-    const {columns} = req.query
+    const {columns} = req.query;
     agency.retrieveData(columns)
         .then((result) => {
             res.json({
