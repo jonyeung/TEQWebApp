@@ -34,7 +34,8 @@ module.exports = {
 
 
     retrieveData: function(columns) {
-        var query = `select `;
+        var query = `select `
+        var isFirstField = true
         for (var i = 0; i < columns.length;i++) {
             if(!isFirstField) {
                 query += ', '
@@ -44,7 +45,7 @@ module.exports = {
         }
         query += ` from AgencyData`
         return new Promise((resolve, reject) => {
-            con.query(query, columns, function (err, result) {
+            con.query(query, function (err, result) {
                 if (err) {
                     reject(err)
                 } else {
