@@ -2,17 +2,17 @@ var selectedFilters = [];
 $(document).ready(function (){
 	loadFilterButtons();
 	var localAgencyData = agencyData;
-	var colomnNameData = Object.keys(localAgencyData);
+	var columnNameData = Object.keys(localAgencyData);
 
 	$("button[class=filterOptions]").on("click", function(event){
 		$("ol#selectable").empty();
 		var id = event.target.id;
 		var char = id.charAt(id.length - 1);
 		var row = "";
-		for(var i = 0; i < colomnNameData.length; i++){
-			if(colomnNameData[i].charAt(0).toUpperCase() == char){
-				row += '<li><button class="colomnNamesList" id=' + localAgencyData[colomnNameData[i]]+
-				'>' + colomnNameData[i] + '</button></li>';
+		for(var i = 0; i < columnNameData.length; i++){
+			if(columnNameData[i].charAt(0).toUpperCase() == char){
+				row += '<li><button class="colomnNamesList" id=' + localAgencyData[columnNameData[i]]+
+				'>' + columnNameData[i] + '</button></li>';
 			}
 		}
 		$("ol#selectable").append(row);
@@ -20,13 +20,13 @@ $(document).ready(function (){
 
     $(function() {
 	    $( "#queryInput" ).autocomplete({
-	       source: colomnNameData
+	       source: columnNameData
 	    });
  	});
 
  	$("button#addFilterButton").on("click", function(event){
  		var searchContent = $("input#queryInput").val();
- 		if($.inArray(searchContent, colomnNameData) != -1){
+ 		if($.inArray(searchContent, columnNameData) != -1){
  			if($.inArray(searchContent,selectedFilters) == -1){
  				selectedFilters.push(searchContent);
  				console.log(selectedFilters);
