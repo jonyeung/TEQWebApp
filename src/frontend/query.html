@@ -37,6 +37,13 @@
   <label for="selectedFilters">Selected Filters:</label>
   <button id="clearFilterButton">Clear Filter</button>
   <button id="savePopupButton">Save Query</button>
+
+  <label for="usertype">Chose From Preset Queries: </label>
+  <select id="savedQuerySelect" name="queryselect">
+    <option value="" disabled selected>Pick a preset query from the dropdown list...</option>
+    <div id=savedQueries></div>
+  </select>
+
   <div class="popup" id="saveQueryPopup">
     <div class="popupContent">
       <span class="close" id="closePopup">&times;</span>

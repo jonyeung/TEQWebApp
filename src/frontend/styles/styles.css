@@ -283,3 +283,7 @@ button.colomnNamesList{
 li {
   background-color: #F4F4F4;
 }
+
+#savedQuerySelect {
+  display:inline;
+}
