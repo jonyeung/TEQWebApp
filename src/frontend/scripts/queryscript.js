@@ -1,18 +1,18 @@
+var selectedFilters = [];
 $(document).ready(function (){
 	loadFilterButtons();
 	var localAgencyData = agencyData;
-	var colomnNameData = Object.keys(localAgencyData);
-	var selectedFilters = [];
+	var columnNameData = Object.keys(localAgencyData);
 
 	$("button[class=filterOptions]").on("click", function(event){
 		$("ol#selectable").empty();
 		var id = event.target.id;
 		var char = id.charAt(id.length - 1);
 		var row = "";
-		for(var i = 0; i < colomnNameData.length; i++){
-			if(colomnNameData[i].charAt(0).toUpperCase() == char){
-				row += '<li><button class="colomnNamesList" id=' + localAgencyData[colomnNameData[i]]+
-				'>' + colomnNameData[i] + '</button></li>';
+		for(var i = 0; i < columnNameData.length; i++){
+			if(columnNameData[i].charAt(0).toUpperCase() == char){
+				row += '<li><button class="colomnNamesList" id=' + localAgencyData[columnNameData[i]]+
+				'>' + columnNameData[i] + '</button></li>';
 			}
 		}
 		$("ol#selectable").append(row);
@@ -20,13 +20,13 @@ $(document).ready(function (){
 
     $(function() {
 	    $( "#queryInput" ).autocomplete({
-	       source: colomnNameData
+	       source: columnNameData
 	    });
  	});
 
  	$("button#addFilterButton").on("click", function(event){
  		var searchContent = $("input#queryInput").val();
- 		if($.inArray(searchContent, colomnNameData) != -1){
+ 		if($.inArray(searchContent, columnNameData) != -1){
  			if($.inArray(searchContent,selectedFilters) == -1){
  				selectedFilters.push(searchContent);
  				console.log(selectedFilters);
@@ -59,8 +59,41 @@ $(document).ready(function (){
 	$("button#cancelSaveButton").on("click", function() {
 		$("div#saveQueryPopup").css("display", "none");
 	});
+
+	$("button#applyFilterButton").on("click", function(){
+		if(selectedFilters.length == 0){
+			alert("Please select more than one filter");
+			return;
+		}
+		var data = [];
+		for (var i = 0;i< selectedFilters.length;i++){
+			data[i] = localAgencyData[selectedFilters[i]];
+		}
+		console.log(data);
+		data = {columns:data}
+		$.ajax({
+			type:"GET",
+			url:"http://localhost:8080/getColumns",
+			data: $.param(data),
+			dataType:"json",
+			traditional:true,
+			error: function(){
+				alert("Error getting column data.");
+			},
+			success:function(data,status){
+				if(data.success){
+					generateColomns(data.result.data, localAgencyData);
+				}else{
+					alert("Cannot apply filter.");
+				}
+			}
+		})
+		
+	})
+
 })
 
+// function that populates filters when user clicks on a letter
 function loadFilterButtons(){
 	var alphabet = 'ABCDEFGHILMNOPRSTUWY';
 	var buttons = '';
@@ -71,6 +104,7 @@ function loadFilterButtons(){
 	$("div#filterByLetter").append(buttons);
 }
 
+// function that update the list of selected filters after user clicks on a filter
 function updateSelectedFilters(filters){
 	var buttons = '';
 	$("div#selectedFilters").empty();
@@ -78,4 +112,36 @@ function updateSelectedFilters(filters){
 		buttons += '<button class="selectedFilters">' + filters[i] + '</button>';
 	}
 	$("div#selectedFilters").append(buttons);
+}
+
+// function that generates a table from returned data
+function generateColomns(data, localAgencyData){
+	$("ol#selectable").empty();
+	$("div#generatedTable").empty();
+	// generate headers
+	var table = '<table id="dataList"><tr>';
+	for(let[key,value] of Object.entries(data[0])){
+		table += '<th>' + getKeyByValue(localAgencyData,key) + '</th>'
+	}
+	table += '</tr>';
+
+	for(var i = 0;i< data.length; i++){
+		table += '<tr>';
+		for(let[key,value] of Object.entries(data[i])){
+			if(value == null){
+				value = 'N/A';
+			}else if (value['type'] == "Buffer"){
+				value = value['data'] == 1 ? 'Yes' : 'No';
+			}
+			table += '<th>' + value + '</th>';
+		}
+		table += '</tr>';
+	}
+	table += '</table>';
+
+	$("div#generatedTable").append(table);
+}
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
 }

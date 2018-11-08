@@ -30,27 +30,22 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 
 
     retrieveData: function(columns) {
+        var query = `select `
         var isFirstField = true
-        var fieldPlaceholders = ''
-        var fields = []
-
-        for (let [key, value] of Object.entries(columns)) {
+        for (var i = 0; i < columns.length;i++) {
             if(!isFirstField) {
-                fieldPlaceholders += ', '
+                query += ', '
             }
-            fieldPlaceholders += '?'
-            fields.push(value)
             isFirstField = false
+            query += columns[i]
         }
-
-
-        var query = `select (${fieldPlaceholders}) from AgencyData`
+        query += ` from AgencyData`
         return new Promise((resolve, reject) => {
-            con.query(query, fields, function (err, result) {
+            con.query(query, function (err, result) {
                 if (err) {
                     reject(err)
                 } else {
@@ -60,5 +55,23 @@ module.exports = {
                 }
             })
         })
+    },
+
+    saveQuery: function(query_name, column_list) {
+        const query = 'insert into PresetQueries (query_name, query) values (?, ?)'
+        return new Promise((resolve, reject) => {
+            con.query(query, [query_name, column_list], function(err, result) {
+                console.log(result)
+                if (err) {
+                    console.log(err)
+                    reject(err)
+                } else {
+                    resolve({
+                        result
+                    })
+                }
+            })
+        })
     }
+    
 }
