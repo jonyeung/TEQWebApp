@@ -1,5 +1,11 @@
 var selectedFilters = [];
 $(document).ready(function (){
+	if(sessionStorage.userLevel != "TEQ_high_level" && sessionStorage.userlevel != "TEQ_mid_level") {
+		$("main *").hide();
+		$(".lowUser").show();
+		$(".lowUser").children().show();
+	}
+
 	loadFilterButtons();
 	var localAgencyData = agencyData;
 	var columnNameData = Object.keys(localAgencyData);
@@ -88,7 +94,7 @@ $(document).ready(function (){
 				}
 			}
 		})
-		
+
 	})
 
 })
