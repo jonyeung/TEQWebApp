@@ -32,7 +32,7 @@ $(document).ready(function() {
 				username : username,
 				password : password}),
 			error: function() {
-		      alert("Log in error has occured");
+		      alert("Log in error has occured.");
 		   	},
 		   	dataType:"json",
 		   	traditional: true,
@@ -44,7 +44,7 @@ $(document).ready(function() {
 					sessionStorage.setItem("username", username.toString());
 					sessionStorage.setItem("userLevel", (data.result.user.access_level).toString());
 				}else{
-					alert("Username/password does not match,please try again.")
+					alert("Username/password does not match, please try again.")
 				}
 			}
 		});
@@ -71,13 +71,13 @@ $(document).ready(function() {
 				access_level : accessLevel
 			}),
 			error: function(){
-				alert("User creation error");
+				alert("User creation error.");
 			},
 			dataType:"json",
 			traditional: true,
 			success:function(data,status){
 				if(data.success){
-					alert("Registered user with id" + data.result.id);
+					alert("Registered user with id" + data.result.id + ".");
 				}else{
 					alert("Register failed, username already exists.")
 				}
@@ -125,16 +125,17 @@ $(document).ready(function() {
 						id: id
 					}),
 					error: function(){
-						alert("User access level update error");
+						alert("User access level update error.");
 					},
 					dataType:"json",
 					traditional: true,
 					success:function(data,status){
 						if(data.success){
-							alert("Updated user id: " + data.result.id + " to access level: " + data.result.access_level);
+							alert("Updated user id: " + data.result.id + " to access level: "
+							 + data.result.access_level + ".");
 							location.reload();
 						}else{
-							alert("Could not update user, please select a new access level");
+							alert("Could not update user, please select a new access level.");
 						}
 					}
 				})
@@ -171,7 +172,7 @@ $(document).ready(function() {
 					reader.readAsArrayBuffer(file.files[0]);
 				}
 			}else{
-				alert("Invalid format, please upload files in excel format (.xls) or (.xlsx)");
+				alert("Invalid format, please upload files in excel format (.xls) or (.xlsx).");
 			}
 		}
 		return;
