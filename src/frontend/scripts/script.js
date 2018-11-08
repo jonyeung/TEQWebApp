@@ -1,19 +1,12 @@
 $(document).ready(function() {
 
-	
+	// If there is no valid user signed in, then redirect to login
 	$(window).on("load", function() {
-		// If there is no valid user signed in, then redirect to login
 		if(($(".loginDiv").length <= 0) && (sessionStorage.userLevel == null)) {
 			alert("Please sign in to a valid account.");
 			document.location.href = "index.html";
 		}
-		// Runs everytime the Dashboard page is loaded.
-		if($("#dashboardCenter").length > 0) {
-			setDashboard(sessionStorage.getItem("userLevel"));
-		}
 	});
-
-	
 
 	// Header click redirects to dashboard.
 	$("header").not("#loginHeader").on("click", function() {
@@ -32,7 +25,7 @@ $(document).ready(function() {
 				username : username,
 				password : password}),
 			error: function() {
-		      alert("Log in error has occured.");
+		      alert("Log in error has occured");
 		   	},
 		   	dataType:"json",
 		   	traditional: true,
@@ -44,7 +37,7 @@ $(document).ready(function() {
 					sessionStorage.setItem("username", username.toString());
 					sessionStorage.setItem("userLevel", (data.result.user.access_level).toString());
 				}else{
-					alert("Username/password does not match, please try again.")
+					alert("Username/password does not match,please try again.")
 				}
 			}
 		});
@@ -71,13 +64,13 @@ $(document).ready(function() {
 				access_level : accessLevel
 			}),
 			error: function(){
-				alert("User creation error.");
+				alert("User creation error");
 			},
 			dataType:"json",
 			traditional: true,
 			success:function(data,status){
 				if(data.success){
-					alert("Registered user with id" + data.result.id + ".");
+					alert("Registered user with id" + data.result.id);
 				}else{
 					alert("Register failed, username already exists.")
 				}
@@ -125,17 +118,16 @@ $(document).ready(function() {
 						id: id
 					}),
 					error: function(){
-						alert("User access level update error.");
+						alert("User access level update error");
 					},
 					dataType:"json",
 					traditional: true,
 					success:function(data,status){
 						if(data.success){
-							alert("Updated user id: " + data.result.id + " to access level: "
-							 + data.result.access_level + ".");
+							alert("Updated user id: " + data.result.id + " to access level: " + data.result.access_level);
 							location.reload();
 						}else{
-							alert("Could not update user, please select a new access level.");
+							alert("Could not update user, please select a new access level");
 						}
 					}
 				})
@@ -149,33 +141,33 @@ $(document).ready(function() {
 		var result = {};
 		if($("select#templateTypeSelect :selected").val() == ""){
 			alert("Please select a template type.");
-		} else {
-			// validate whether file is valid excel file
-			var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
-			if (regex.test(file.value.toLowerCase())) {
-				var reader = new FileReader();
-				if (reader.readAsBinaryString) {
-					reader.onload = function (e) {
-						processExcel(e.target.result);
-					};
-					reader.readAsBinaryString(file.files[0]);
-				} else {
-					//For IE Browser.
-					reader.onload = function (e) {
-						var data = "";
-						var bytes = new Uint8Array(e.target.result);
-						for (var i = 0; i < bytes.byteLength; i++) {
-							data += String.fromCharCode(bytes[i]);
-						}
-						processExcel(data);
-					};
-					reader.readAsArrayBuffer(file.files[0]);
-				}
-			}else{
-				alert("Invalid format, please upload files in excel format (.xls) or (.xlsx).");
-			}
+			return;
 		}
-		return;
+		// validate whether file is valid excel file
+		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+        if (regex.test(file.value.toLowerCase())) {
+			var reader = new FileReader();
+            if (reader.readAsBinaryString) {
+                reader.onload = function (e) {
+                    processExcel(e.target.result);
+                };
+                reader.readAsBinaryString(file.files[0]);
+            } else {
+                //For IE Browser.
+                reader.onload = function (e) {
+                    var data = "";
+                    var bytes = new Uint8Array(e.target.result);
+                    for (var i = 0; i < bytes.byteLength; i++) {
+                        data += String.fromCharCode(bytes[i]);
+                    }
+                    processExcel(data);
+                };
+                reader.readAsArrayBuffer(file.files[0]);
+            }
+        }else{
+        	alert("Invalid format, please upload files in excel format (.xls) or (.xlsx)");
+        	return;
+        }
 
 	});
 
@@ -188,6 +180,7 @@ $(document).ready(function() {
 		var formType = $("select#templateTypeSelect :selected").val();
 
 		//{range:i} will skip the first i row
+		//var excelRows = XLSX.utils.sheet_to_json(workbook.Sheets[firstSheet], {range:1});
 		var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet], {range:1});
 
 		for(var i = 1; i < excelRows.length; i++){
@@ -211,6 +204,8 @@ $(document).ready(function() {
 					contentType:"application/json",
 					traditional: true,
 					success:function(data,status){
+						// console.log(data);
+						// console.log(status);
 						if(data.success){
 							alert("Data uploaded" );
 						}else{
@@ -260,7 +255,7 @@ $(document).ready(function() {
 	});
 });
 
-// Cleans data from Excel file by keeping it consistent with columns in db
+
 function cleanData(data, formType){
 	for (var key in data){
 		if(data[key] == "Yes"){
@@ -318,7 +313,12 @@ function generateDropdown(id) {
 	return dropdown;
 }
 
-
+// Runs everytime the Dashboard page is loaded.
+$(window).on("load", function() {
+	if($("#dashboardCenter").length > 0) {
+		setDashboard(sessionStorage.getItem("userLevel"));
+	}
+});
 
 // Sets the information displayed on the dashboard based on userlevel.
 function setDashboard(userLevel) {
