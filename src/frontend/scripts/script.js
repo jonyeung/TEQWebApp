@@ -6,10 +6,7 @@ $(document).ready(function() {
 			alert("Please sign in to a valid account.");
 			document.location.href = "index.html";
 		}
-		// Runs everytime the Dashboard page is loaded.
-		if($("#dashboardCenter").length > 0) {
-			setDashboard(sessionStorage.getItem("userLevel"));
-		}
+		
 	});
 
 	// Header click redirects to dashboard.
@@ -312,6 +309,13 @@ function generateDropdown(id) {
 			'<option value="UTSC_staff">UTSC Project Staff</option></select>';
 	return dropdown;
 }
+
+// Runs everytime the Dashboard page is loaded.
+$(window).on("load", function() {
+	if($("#dashboardCenter").length > 0) {
+		setDashboard(sessionStorage.getItem("userLevel"));
+	}
+});
 
 // Sets the information displayed on the dashboard based on userlevel.
 function setDashboard(userLevel) {

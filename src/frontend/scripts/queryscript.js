@@ -68,7 +68,7 @@ $(document).ready(function (){
 
 	$("button#applyFilterButton").on("click", function(){
 		if(selectedFilters.length == 0){
-			alert("Please select more than one filter");
+			alert("Please select more than one filter.");
 			return;
 		}
 		var data = [];
