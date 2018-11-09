@@ -22,7 +22,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             con.query(query, fields.concat(values), function (err, result) {
                 if (err) {
-		    console.log(err)
+		            console.log(err)
                     reject(err)
                 } else {
                     resolve({
@@ -48,7 +48,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             con.query(query, function (err, result) {
                 if (err) {
-		    console.log(err)
+		            console.log(err)
                     reject(err)
                 } else {
                     resolve ({
@@ -63,7 +63,6 @@ module.exports = {
         const query = 'insert into PresetQueries (query_name, query) values (?, ?)'
         return new Promise((resolve, reject) => {
             con.query(query, [query_name, column_list], function(err, result) {
-                console.log(result)
                 if (err) {
                     console.log(err)
                     reject(err)
