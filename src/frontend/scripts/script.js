@@ -6,7 +6,7 @@ $(document).ready(function() {
 			alert("Please sign in to a valid account.");
 			document.location.href = "index.html";
 		}
-		
+
 	});
 
 	// Header click redirects to dashboard.
@@ -226,7 +226,7 @@ $(document).ready(function() {
 			alert("Please select at least 1 column to query.")
 			return;
 		}
-		
+
 		$.ajax({
 			type:"POST",
 			url:"https://c01.mechanus.io/saveQuery",
@@ -248,7 +248,7 @@ $(document).ready(function() {
 			}
 		})
 		return false;
-		
+
 	});
 });
 
@@ -319,18 +319,14 @@ $(window).on("load", function() {
 
 // Sets the information displayed on the dashboard based on userlevel.
 function setDashboard(userLevel) {
-		var levelName = "";
-		if (userLevel == "support_agency") {
-			levelName = "Support Agency";
-		} else if (userLevel == "TEQ_low_level") {
-			levelName = "TEQ Low Level";
-		} else if (userLevel == "TEQ_mid_level") {
-			levelName = "TEQ Mid Level";
-		} else if (userLevel == "TEQ_high_level") {
-			levelName = "TEQ High Level";
-		} else if (userLevel == "UTSC_staff") {
-			levelName = "UTSC Project Staff";
-		} else {
+		var map = {};
+		map["support_agency"] = "Support Agency";
+		map["TEQ_low_level"] = "TEQ Low Level";
+		map["TEQ_mid_level"] = "TEQ Mid Level";
+		map["TEQ_high_level"] = "TEQ High Level";
+		map["UTSC_staff"] = "UTSC Project Staff";
+		var levelName = map[userLevel];
+		if (typeof levelName == "undefined") {
 			alert("Error: User type is not supported, please sign in with a valid account.");
 			document.location.href = "index.html";
 		}
@@ -343,7 +339,7 @@ function setDashboard(userLevel) {
 			$("#queryDataBtn").hide();
 			$("#registerUserBtn").hide();
 			$("#changeUserBtn").hide();
-		} 
+		}
 		else if (userLevel == "TEQ_low_level" || userLevel == "TEQ_mid_level") {
 			$("#registerUserBtn").prop('disabled', true);
 			$("#changeUserBtn").prop('disabled', true);

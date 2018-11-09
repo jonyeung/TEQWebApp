@@ -1,6 +1,6 @@
 var selectedFilters = [];
 $(document).ready(function (){
-	if(sessionStorage.userLevel != "TEQ_high_level" && sessionStorage.userlevel != "TEQ_mid_level") {
+	if(sessionStorage.userLevel == "TEQ_low_level") {
 		$("main *").hide();
 		$(".lowUser").show();
 		$(".lowUser").children().show();
