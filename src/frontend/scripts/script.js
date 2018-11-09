@@ -25,7 +25,7 @@ $(document).ready(function() {
 				username : username,
 				password : password}),
 			error: function() {
-		      alert("log in error has occured");
+		      alert("Log in error has occured");
 		   	},
 		   	dataType:"json",
 		   	traditional: true,
@@ -33,7 +33,6 @@ $(document).ready(function() {
 				console.log(data);
 				console.log(status);
 				if(data.result.authenticated){
-					alert("Successfully logged in as " + data.result.user.access_level);
 					window.location.href = "dashboard.html";
 					sessionStorage.setItem("username", username.toString());
 					sessionStorage.setItem("userLevel", (data.result.user.access_level).toString());
@@ -85,7 +84,7 @@ $(document).ready(function() {
 		type:"GET",
 		url:"https://c01.mechanus.io/user",
 		error: function(){
-			alert("Error during getUsers");
+			alert("Error in getting data from server.");
 		},
 		dataType:"json",
 		traditional:true,
@@ -95,16 +94,6 @@ $(document).ready(function() {
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
 					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' +
 					generateDropdown(this.ID) + '</td></tr>';
-
-					function generateDropdown(id) {
-						var dropdown = '<select class="changeLevelDropdown" id="'+id+'" name="usertype"><option value=""' +
-						'disabled selected>Pick a user type from the dropdown list...</option>' +
-						'<option value="support_agency">Support Agency</option><option value="TEQ_low_level">TEQ Low Level</option>'+
-						'<option value="TEQ_mid_level">TEQ Mid Level</option><option value="TEQ_high_level">TEQ High Level</option>'+
-						'<option value="UTSC_staff">UTSC Project Staff</option></select>'
-						return dropdown;
-					}
-
 					$('#userList tr:last').after(row);
 				})
 			}else{
@@ -114,7 +103,7 @@ $(document).ready(function() {
 
 	})
 
-
+	// save button function
 	$("button#saveButton").on("click", function(){
 		$('.changeLevelDropdown').each(function() {
 			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
@@ -134,8 +123,6 @@ $(document).ready(function() {
 					dataType:"json",
 					traditional: true,
 					success:function(data,status){
-						// console.log(data);
-						// console.log(status);
 						if(data.success){
 							alert("Updated user id: " + data.result.id + " to access level: " + data.result.access_level);
 							location.reload();
@@ -159,7 +146,6 @@ $(document).ready(function() {
 		// validate whether file is valid excel file
 		var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
         if (regex.test(file.value.toLowerCase())) {
-        	//alert("is excel file");
 			var reader = new FileReader();
             if (reader.readAsBinaryString) {
                 reader.onload = function (e) {
@@ -318,6 +304,14 @@ function cleanData(data, formType){
 }
 
 
+function generateDropdown(id) {
+	var dropdown = '<select class="changeLevelDropdown" id="'+id+'" name="usertype"><option value=""' +
+			'disabled selected>Pick a user type from the dropdown list...</option>' +
+			'<option value="support_agency">Support Agency</option><option value="TEQ_low_level">TEQ Low Level</option>'+
+			'<option value="TEQ_mid_level">TEQ Mid Level</option><option value="TEQ_high_level">TEQ High Level</option>'+
+			'<option value="UTSC_staff">UTSC Project Staff</option></select>';
+	return dropdown;
+}
 
 // Runs everytime the Dashboard page is loaded.
 $(window).on("load", function() {

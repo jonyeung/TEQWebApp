@@ -11,6 +11,7 @@ module.exports = {
             con.query(query, [username, hashedPassword, 0, access_level], function(err, result) {
                 console.log(result)
                 if (err) {
+		    
                     reject(err)
                 } else {
                     resolve({
@@ -29,6 +30,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             con.query(query, [username, hashedPassword], function(err, result) {
                 if (err) {
+		    console.log(err)
                     reject(err)
                 } else if (result === undefined || result.length == 0) {
                     resolve({
@@ -37,7 +39,7 @@ module.exports = {
                 } else {
                     resolve({
                         authenticated: true,
-                        user: result[0]
+                        user: result[0] // return the first (and the only) user
                     })
                 }
             })
@@ -66,11 +68,12 @@ module.exports = {
             con.query(query, [access_level, id], function(err, result) {
                 console.log(result)
                 if(err) {
+		    console.log(err)
                     reject(err)
                 } else {
                     resolve({
-                        id: id,
-                        access_level: access_level
+                        id,
+                        access_level
                     })
                 }
             })
