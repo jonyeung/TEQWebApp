@@ -120,8 +120,24 @@ app.get('/getColumns', function(req, res) {
 
 app.post('/saveQuery', function(req, res) {
     const {query_name, column_list} = req.body
-    console.log(query_name, column_list)
     agency.saveQuery(query_name, column_list)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
+app.get('/getPresetQuery', function(req, res) {
+    const {query_name} = req.query
+    agency.getPresetQuery(query_name)
         .then((result) => {
             res.json({
                 success: true,

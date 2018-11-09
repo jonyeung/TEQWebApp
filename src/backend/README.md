@@ -150,5 +150,24 @@ return value:
 
 example:
 ```
+➜  backend git:(master) ✗ curl -d 'query_name=Test3&column_list=Housing, Language of Service, Life Skills' -X POST localhost:8080/saveQuery
+{"success":true,"result":{"result":{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}}}
+```
 
+#### get preset query
+POST `/getPresetQuery`
+
+query:
+- query_name: string
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+    - column_list: string of selected columns
+- error: object (only if the operation is unsuccessful)
+
+example:
+```
+➜  backend git:(master) ✗ curl 'localhost:8080/getPresetQuery?query_name=Test1'
+{"success":true,"result":{"column_list":[{"query":"Computer Skills, Education, Education Referrals"}]}}
 ```

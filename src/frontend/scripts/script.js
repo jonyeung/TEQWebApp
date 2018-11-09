@@ -215,6 +215,7 @@ $(document).ready(function() {
 		}
 	}
 
+	// save the selected columns function
 	$("button#saveQueryButton").on("click", function(){
 		var query_name = $("input#saveQueryName").val();
 		var column_list = selectedFilters.join(", ");
@@ -225,7 +226,6 @@ $(document).ready(function() {
 			alert("Please select at least 1 column to query.")
 			return;
 		}
-		console.log(query_name, column_list);
 		
 		$.ajax({
 			type:"POST",
