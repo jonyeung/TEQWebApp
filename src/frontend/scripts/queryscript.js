@@ -35,7 +35,6 @@ $(document).ready(function (){
  		if($.inArray(searchContent, columnNameData) != -1){
  			if($.inArray(searchContent,selectedFilters) == -1){
  				selectedFilters.push(searchContent);
- 				console.log(selectedFilters);
  				updateSelectedFilters(selectedFilters);
  			}
  		}
