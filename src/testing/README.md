@@ -25,3 +25,18 @@ When this is done, RIDE is started by running `ride.py`
 
 ### Running a Test Suite
 Use RIDE to open any of the .robot files and navigate to the Run tab to execute the test cases.
+
+## Unit Testing
+
+### Installation
+To install qunit in node, run `npm install --save-dev qunit` in terminal.
+
+The test files can be found in `src/testing/unit-testing`. 
+`.js` files contains test suites written in Javascript under the QUnit framework
+`.html` is used to display test results on the browser
+
+More documentations about how to write unit tests for Javascript and JQuery can be found at:
+https://qunitjs.com/
+
+### Running a test suite
+Use any JQuery supported browsers to run `qunit.html` and nagivate to see test results.

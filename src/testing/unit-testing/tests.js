@@ -1,7 +1,3 @@
-QUnit.test( "hello test", function( assert ) {
-    assert.ok( 1 == "1", "Passed!" );
-  });
-
 QUnit.test("test for loadFilterButtons", function(assert){
     var expected = 'ABCDEFGHILMNOPRSTUWY';
     $('<div id="filterByLetter"></div>').appendTo('body');
