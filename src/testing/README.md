@@ -39,4 +39,4 @@ More documentations about how to write unit tests for Javascript and JQuery can 
 https://qunitjs.com/
 
 ### Running a test suite
-Use any JQuery supported browsers to run `qunit.html` and nagivate to see test results.
+Use any JQuery supported browsers to run `qunit.html` and navigate to see test results.
