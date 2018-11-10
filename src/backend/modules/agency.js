@@ -62,7 +62,8 @@ module.exports = {
     saveQuery: function(query_name, column_list) {
         const query = 'insert into PresetQueries (query_name, query) values (?, ?)'
         return new Promise((resolve, reject) => {
-            con.query(query, [query_name, column_list], function(err, result) {
+            // store queries as json
+            con.query(query, [query_name, JSON.stringify(column_list)], function(err, result) {
                 if (err) {
                     console.log(err)
                     reject(err)
@@ -74,7 +75,7 @@ module.exports = {
             })
         })
     },
-    
+
     getPresetQueries: function() {
         const query = 'select * from PresetQueries'
         return new Promise((resolve, reject) => {
