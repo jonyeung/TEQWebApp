@@ -218,21 +218,21 @@ $(document).ready(function() {
 	// save the selected columns function
 	$("button#saveQueryButton").on("click", function(){
 		var query_name = $("input#saveQueryName").val();
-		var column_list = selectedFilters.join(", ");
 		if (query_name == "") {
 			alert("Please enter a name for the query.")
 			return;
-		} else if (column_list.length < 1) {
+		} else if (selectedFilters.length < 1) {
 			alert("Please select at least 1 column to query.")
 			return;
 		}
 
 		$.ajax({
 			type:"POST",
-			url:"https://c01.mechanus.io/saveQuery",
+			url:"http://localhost:8080/saveQuery",
 			data: ({
 				query_name : query_name,
-				column_list : column_list
+				column_list : selectedFilters,
+				traditional: true
 			}),
 			error: function(){
 				alert("Query saving error.");
