@@ -171,3 +171,19 @@ example:
 ➜  backend git:(master) ✗ curl 'localhost:8080/getPresetQuery?query_name=Test1'
 {"success":true,"result":{"column_list":[{"query":"Computer Skills, Education, Education Referrals"}]}}
 ```
+### get preset queries
+GET `/getPresetQueries`
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+    - key: string, query name
+    - value: array of strings
+- error: object (only if the operation is unsuccessful)
+
+e.g.
+
+```
+➜  backend git:(t28) ✗ curl localhost:8080/getPresetQueries
+{"success":true,"result":{"ab":["Health Referrals","Housing/Accommodation"],"Donald trump's secret":["Health Referrals","Housing/Accommodation","Housing Referrals"]}}% 
+```
