@@ -152,4 +152,20 @@ app.get('/getPresetQuery', function(req, res) {
         })
 })
 
+app.get('/getPresetQueries', function(req, res) {
+    agency.getPresetQueries()
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
 app.listen(8080)

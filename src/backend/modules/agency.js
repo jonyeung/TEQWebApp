@@ -75,6 +75,24 @@ module.exports = {
         })
     },
     
+    getPresetQueries: function() {
+        const query = 'select * from PresetQueries'
+        return new Promise((resolve, reject) => {
+            con.query(query, function(err, result) {
+                if (err) {
+                    reject(err)
+                } else {
+                    ret = {}
+                    result.forEach((queryObj) => {
+                        const {query_name, query} = queryObj
+                        ret[query_name] = JSON.parse(query)
+                    })
+                    resolve(ret)
+                }
+            })
+        })
+    },
+    
     getPresetQuery: function(query_name) {
         const query = 'select query from PresetQueries where query_name = ?'
         return new Promise((resolve, reject) => {
