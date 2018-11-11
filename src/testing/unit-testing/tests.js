@@ -3,7 +3,7 @@ QUnit.test("test for loadFilterButtons", function(assert){
     $('<div id="filterByLetter"></div>').appendTo('body');
     loadFilterButtons();
     $('#filterByLetter').css('display','none');
-    assert.equal($("#filterByLetter").text(), 
+    assert.equal($("#filterByLetter").text(),
     expected, "Passed!" )
 });
 
@@ -15,7 +15,7 @@ QUnit.test( "test for updateSelectedFilters", function( assert ) {
     newdiv.appendTo('body');
     updateSelectedFilters(filters);
     $("#selectedFilters").css("display","none");
-    assert.equal($("#selectedFilters").html(), 
+    assert.equal($("#selectedFilters").html(),
     expected, "Passed!" )
 });
 
@@ -26,7 +26,7 @@ QUnit.test("test for getKeyByValue", function(assert){
     assert.equal(getKeyByValue(obj,"pear"), undefined, "Passed!");
 });
 
-QUnit.test("test for generateColomns", function(assert){
+QUnit.test("test for generateColumns", function(assert){
     var data = [{"processing_details":"details1", "phone_no":"phone1"},
     {"processing_details":"details2", "phone_no":"phone2"}];
     var expected = "<table id=\"dataList\"><tbody><tr><th>Processing Details</th><th>" +
@@ -35,7 +35,7 @@ QUnit.test("test for generateColomns", function(assert){
     var newdiv = $('<div id="generatedTable"></div>');
 
     newdiv.appendTo('body');
-    generateColomns(data,agencyData);
+    generateColumns(data,agencyData);
     $("#generatedTable").css("display","none");
     assert.equal($('#generatedTable').html(),
     expected,"Passed!");
