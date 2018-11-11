@@ -89,7 +89,7 @@ $(document).ready(function (){
 			},
 			success:function(data,status){
 				if(data.success){
-					generateColomns(data.result.data, localAgencyData);
+					generateColumns(data.result.data, localAgencyData);
 				}else{
 					alert("Cannot apply filter.");
 				}
@@ -128,7 +128,7 @@ function updateSelectedFilters(filters){
 }
 
 // function that generates a table from returned data
-function generateColomns(data, localAgencyData){
+function generateColumns(data, localAgencyData){
 	$("ol#selectable").empty();
 	$("div#generatedTable").empty();
 	// generate headers
