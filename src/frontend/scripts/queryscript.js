@@ -67,6 +67,10 @@ $(document).ready(function (){
 		$("div#saveQueryPopup").css("display", "none");
 	});
 
+	$("button#saveQueryButton").on("click", function() {
+		$("div#saveQueryPopup").css("display", "none");
+	});
+
 	$("button#applyFilterButton").on("click", function(){
 		if(selectedFilters.length == 0){
 			alert("Please select more than one filter.");

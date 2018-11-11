@@ -93,21 +93,6 @@ module.exports = {
                 }
             })
         })
-    },
+    }
 
-    getPresetQuery: function(query_name) {
-        const query = 'select query from PresetQueries where query_name = ?'
-        return new Promise((resolve, reject) => {
-            con.query(query, [query_name], function(err, result) {
-                if (err) {
-                    console.log(err)
-                    reject(err)
-                } else {
-                    resolve({
-                        column_list: result
-                    })
-                }
-            })
-        })
-    },
 }
