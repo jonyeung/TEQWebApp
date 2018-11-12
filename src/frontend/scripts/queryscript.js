@@ -84,7 +84,7 @@ $(document).ready(function (){
 		data = {columns:data}
 		$.ajax({
 			type:"GET",
-			url:"http://localhost:8080/getColumns",
+			url:"http://c01.mechanus.io/getColumns",
 			data: $.param(data),
 			dataType:"json",
 			traditional:true,
@@ -166,7 +166,7 @@ function getKeyByValue(object, value) {
 function applySavedQueries() {
 	$.ajax({
 		type: 'GET',
-		url: 'http://localhost:8080/getPresetQueries',
+		url: 'http://c01.mechanus.io/getPresetQueries',
 		error: function() {
 			alert('Error occured during data retrieval.')
 		},

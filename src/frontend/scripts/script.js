@@ -228,7 +228,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type:"POST",
-			url:"http://localhost:8080/saveQuery",
+			url:"http://c01.mechanus.io/saveQuery",
 			data: ({
 				query_name : query_name,
 				column_list : selectedFilters,
