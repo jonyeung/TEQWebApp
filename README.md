@@ -6,8 +6,6 @@ The document for Devliverable 4 (*Verification and Code Review*) can be found in
 
 The video about our code review is [here](https://drive.google.com/open?id=1kRGLnqUvsUH7xK6t5qBPXJMZz7t62NSz)
 
-**Note**: Currently all our new features as well as our testing can be found on the development branch, it will all be merged to master shortly. Until then please look at our development branch to find our testing for *Deliverable 4*.
-
 # Navigating the Repo
 The src is divided into two sub-directories: backend and frontend. The frontend contains all our HTML pages along with the jQuery scripts and styling sheets.
 The backend contains all our backend APIs powered by Node.js.
@@ -23,9 +21,11 @@ Navigate through Team2/src/frontend/ . You can run the HTML files locally on a b
 the following pages and features:
 ```
 - index: landing page of the website, user can sign in with their credentials
+- dashboard: landing page after the user logs in, displays all functionalities available to the user
 - userlist: page that displays a list of all existing users in the system
 - registration: page to register a new user with password and access levels
 - upload_data: page that allows users to upload iCARE templates into the database
+- query: page that allows users to add filters, save filters, and apply filters to query the data
 ```
 # Testing
 Unit tests and acceptance tests have been written for the user stories up to the end of Sprint 3. The tests can be found under src/testing .
