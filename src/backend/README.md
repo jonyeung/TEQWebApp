@@ -113,25 +113,60 @@ example:
 #### retrieve data
 GET `/getColumns`
 
-body: {
-  "columns": {
-      "columnNumber": int,
-      "columnName": string
-  }
+query: {
+  column[]: colomnName1,
+  column[]: colomnName2,
+  column[]: colomnName3,
+  ...
 }
 
 return value:
 - success: boolean
 - result: object (only if the operation is successful)
   - data: array of objects
-    - ID: int
-    - currently_logged_in:int
-    - access_level: string
+    - key of data[i]: colomn name from the database
+    - value of data[i]: data for colomn name at row i
 - error: object (only if the operation has failed)
 
 example:
 ```
-➜  backend git:(backend) ✗ curl -d '{"column": { 1: "Unique_Identifier", 2:"Unique_Identifier_Value", 3:"Street_Number", 4:"Street_Name", 5:"Street_Type", 6:"City", 7:"Province", 8:"Postal_Code"} }' -H "Content-Type: application/json" localhost:8080/getColumns
-{"success":true,"result":{"data":[{"Unique_Identifier":"FOSS/GCMS Client ID","Unique_Identifier_Value":12345678,"Street_Number":1256, "Street_Name":"College","Street_Type":"Abbey", "City":"Toronto", "Province":"Ontario", "Postal_Code":"M6G3A4"}]}}
+➜  backend git:(backend) ✗ curl "http://localhost:8080/getColumns?columns^%^5B^%^5D=processing_details^&columns^%^5B^%^5D=postal_cd" 
+{"success":true,"result":{"data":[{"postal_cd":null,"processing_details": "[BUID:305939,RID:,ORP:4/5,DTS:2018-08-07 10:05:04][1] (Client) Unable to validate against database. / (Client) Impossible de valider dans la base de données."
+},{"postal_cd":"M6G3A4", "processing_details": "[BUID:305939,RID:,ORP:4/5,DTS:2018-08-07 10:05:04][1] (Client) Unable to validate against database. / (Client) Impossible de valider dans la base de données."
+}]}}
 ```
-}
+
+#### save query
+POST `/saveQuery`
+
+body:
+- query_name: string
+- column_list: list of strings
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+- error: object (only if the operation is unsuccessful)
+
+example:
+```
+➜  backend git:(master) ✗ curl -d '{"query_name":"Donald trump's secret", "column_list":["Health Referrals","Housing/Accommodation","Housing Referrals"]}' -H "Content-Type: application/json" localhost:8080/saveQuery
+{"success":true,"result":{"result":{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}}}
+```
+
+### get preset queries
+GET `/getPresetQueries`
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+    - key: string, query name
+    - value: array of strings
+- error: object (only if the operation is unsuccessful)
+
+e.g.
+
+```
+➜  backend git:(t28) ✗ curl localhost:8080/getPresetQueries
+{"success":true,"result":{"ab":["Health Referrals","Housing/Accommodation"],"Donald trump's secret":["Health Referrals","Housing/Accommodation","Housing Referrals"]}}% 
+```

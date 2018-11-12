@@ -9,7 +9,7 @@
   <script type="text/javascript" src="scripts/queryscript.js"></script>
   <script type="text/javascript" src="scripts/agencyData.json"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
-
+  <script type="text/javascript" src="scripts/script.js"></script>
 
   <meta charset="utf-8">
 
@@ -27,22 +27,44 @@
 </header>
 
 <main>
-  <label id="addFilterSearchText" for="searchFilterOptions">Search for colomn name:</label>
+  <label id="addFilterSearchText" for="searchFilterOptions">Search for column name:</label>
   <div class="searchBar ui-widget">
     <input type="text" id="queryInput" placeholder="Search ...">
     <button id="addFilterButton">Add Filter</button>
-    <button id="applyFilterButton">Apply Filter</button>
     <div id="dropdownList" class="dropdownContent"></div>
   </div>
-  <label for="selectedFilters">Selected Filters:</label>
-  <button id="clearFilterButton">Clear Filter</button>
-  <div id="selectedFilters"></div>
+  <label class="lowUser" for="selectedFilters">Selected Filters:</label>
+  <button class="lowUser" id="applyFilterButton">Apply Filters</button>
+  <button class="lowUser" id="clearFilterButton">Clear Filters</button>
+  <button id="savePopupButton">Save Query</button>
+
+  <label class="lowUser" for="usertype">Chose From Preset Queries: </label>
+  <select class="lowUser" id="savedQuerySelect" name="queryselect">
+    <option value="" disabled selected>Pick a preset query from the dropdown list...</option>
+    <div class="lowUser" id=savedQueries></div>
+  </select>
+
+  <div class="popup" id="saveQueryPopup">
+    <div class="popupContent">
+      <span class="close" id="closePopup">&times;</span>
+      <h3 class="popupHeader">Save Query to Dashboard</h3>
+      <form>
+        <label for="saveQueryName">Query Name</label>
+        <input type="text" id="saveQueryName" placeholder="Enter a name for this query..." required>
+        <div id="saveCancelButtons">
+          <button type="submit" id="saveQueryButton">Save</button>
+          <button id="cancelSaveButton">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="lowUser" id="selectedFilters"></div>
   <label for="filteringByFirstLetter">Filter by first letter:</label>
   <div id="filterByLetter"></div>
   <div id="filterByLetterOptions">
     <ol id="selectable"></ol>
   </div>
-  
+  <div class="lowUser" id="generatedTable"></div>
 </main>
 
 
