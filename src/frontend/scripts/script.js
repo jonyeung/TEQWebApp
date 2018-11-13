@@ -8,11 +8,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// Header click redirects to dashboard.
-	$("header").not("#loginHeader").on("click", function() {
-		document.location.href = "dashboard.html";
-	});
-
 	// user sign-in
 	$("button#loginBtn").on("click", function(){
 		var username = $("#loginUsername[name=username]").val();
@@ -317,7 +312,7 @@ function setDashboard(userLevel) {
 			$("#queryDataBtn").hide();
 			$("#registerUserBtn").hide();
 			$("#changeUserBtn").hide();
-		} 
+		}
 		else if (userLevel == "TEQ_low_level" || userLevel == "TEQ_mid_level") {
 			$("#registerUserBtn").prop('disabled', true);
 			$("#changeUserBtn").prop('disabled', true);
