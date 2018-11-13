@@ -2,7 +2,6 @@
 /* All pages */
 
 body * {
-  background-color: #F7F7F7;
   font-family: "Helvetica", sans-serif;
   font-size: 1em;
 }
@@ -132,7 +131,7 @@ th, td {
 }
 
 #userListDiv {
-  width: 90%;
+  width: 100%;
 }
 
 #userList {
@@ -155,6 +154,7 @@ th, td {
 }
 
 #dataList {
+  margin-top:2em;
   width: 100%;
   display:block;
   overflow: auto;
@@ -224,4 +224,67 @@ button.colomnNamesList{
 }
 .ui-helper-hidden-accessible{
   display: none;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.popupContent {
+  margin: 5% auto;
+  padding: 2%;
+  background-color: #F7F7F7;
+  box-shadow: 2px 6px 30px #A0A0A0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #A0A0A0;
+  border-radius: 1%;
+  width: 50%;
+  height: 30%;
+  min-height: 300px;
+}
+
+.popupHeader {
+  font-size: 1.7em;
+  font-weight: normal;
+  color: #444444;
+  border-bottom: 1px solid #444444;
+}
+
+.close {
+  color: #444444;
+  float: right;
+  padding: 1px;
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.close:hover {
+  color: #A0A0A0;
+  cursor: pointer;
+}
+
+#saveQueryName {
+  width: 50%;
+}
+
+#saveCancelButtons {
+  float: right;
+  margin-top: 15%;
+}
+
+li {
+  background-color: #F4F4F4;
+}
+
+#savedQuerySelect {
+  display:inline;
 }

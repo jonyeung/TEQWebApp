@@ -22,6 +22,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             con.query(query, fields.concat(values), function (err, result) {
                 if (err) {
+		            console.log(err)
                     reject(err)
                 } else {
                     resolve({
@@ -30,28 +31,24 @@ module.exports = {
                 }
             })
         })
-    }
+    },
 
 
     retrieveData: function(columns) {
+        var query = `select `
         var isFirstField = true
-        var fieldPlaceholders = ''
-        var fields = []
-
-        for (let [key, value] of Object.entries(columns)) {
+        for (var i = 0; i < columns.length;i++) {
             if(!isFirstField) {
-                fieldPlaceholders += ', '
+                query += ', '
             }
-            fieldPlaceholders += '?'
-            fields.push(value)
             isFirstField = false
+            query += columns[i]
         }
-
-
-        var query = `select (${fieldPlaceholders}) from AgencyData`
+        query += ` from AgencyData`
         return new Promise((resolve, reject) => {
-            con.query(query, fields, function (err, result) {
+            con.query(query, function (err, result) {
                 if (err) {
+		            console.log(err)
                     reject(err)
                 } else {
                     resolve ({
@@ -60,5 +57,42 @@ module.exports = {
                 }
             })
         })
+    },
+
+    saveQuery: function(query_name, column_list) {
+        const query = 'insert into PresetQueries (query_name, query) values (?, ?)'
+        column_list = (Array.isArray(column_list) ? column_list : [ column_list ])
+        return new Promise((resolve, reject) => {
+            // store queries as json
+            con.query(query, [query_name, JSON.stringify(column_list)], function(err, result) {
+                if (err) {
+                    console.log(err)
+                    reject(err)
+                } else {
+                    resolve({
+                        result
+                    })
+                }
+            })
+        })
+    },
+
+    getPresetQueries: function() {
+        const query = 'select * from PresetQueries'
+        return new Promise((resolve, reject) => {
+            con.query(query, function(err, result) {
+                if (err) {
+                    reject(err)
+                } else {
+                    ret = {}
+                    result.forEach((queryObj) => {
+                        const {query_name, query} = queryObj
+                        ret[query_name] = JSON.parse(query)
+                    })
+                    resolve(ret)
+                }
+            })
+        })
     }
+
 }

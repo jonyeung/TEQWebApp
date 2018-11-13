@@ -102,8 +102,41 @@ app.post('/insertRow', function(req, res) {
 })
 
 app.get('/getColumns', function(req, res) {
-    const {columns} = req.query
+    const {columns} = req.query;
     agency.retrieveData(columns)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
+app.post('/saveQuery', function(req, res) {
+    const {query_name, column_list} = req.body
+    agency.saveQuery(query_name, column_list)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
+app.get('/getPresetQueries', function(req, res) {
+    agency.getPresetQueries()
         .then((result) => {
             res.json({
                 success: true,
