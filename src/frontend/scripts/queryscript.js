@@ -80,7 +80,6 @@ $(document).ready(function (){
 		for (var i = 0;i< selectedFilters.length;i++){
 			data[i] = localAgencyData[selectedFilters[i]];
 		}
-		console.log(data);
 		data = {columns:data}
 		$.ajax({
 			type:"GET",
@@ -94,6 +93,7 @@ $(document).ready(function (){
 			success:function(data,status){
 				if(data.success){
 					generateColumns(data.result.data, localAgencyData);
+					console.log(objToCsv(data.result.data));
 				}else{
 					alert("Cannot apply filter.");
 				}
@@ -182,4 +182,38 @@ function applySavedQueries() {
 			}
 		}
 	})
+}
+
+function objToCsv(obj){
+	var csv = "";
+	if(obj.length > 0){
+		var header = Object.keys(obj[0]);
+		for(var i = 0; i < header.length; i++){
+			csv += getKeyByValue(agencyData,header[i]);
+			if(i < header.length - 1){
+				csv += ",";
+			}
+		}
+		csv += "\n";
+		for(var j = 0; j < obj.length; j++){
+			var values = Object.values(obj[j]);
+			for (var k = 0; k < values.length;k++){
+				if(values[k] == null){
+					csv += 'N/A';
+				}else if (values[k] == "Buffer"){
+					csv += values[k] == 1 ? 'Yes' : 'No';
+				}else{
+					csv += values[k];
+				}
+				if(k < values.length - 1){
+					csv += ",";
+				}
+			}
+			csv += "\n";	
+		}
+		return csv;
+	}else{
+		return null;
+	}
+	
 }
