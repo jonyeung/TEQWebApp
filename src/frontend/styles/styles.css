@@ -288,3 +288,7 @@ li {
 #savedQuerySelect {
   display:inline;
 }
+
+#exportToCSVButton {
+  margin-top: 40px;
+}
