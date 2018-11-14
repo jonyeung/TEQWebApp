@@ -10,9 +10,9 @@ $(document).ready(function() {
 
   // Loads the page header into the header tag.
   function loadHeader() {
-    var content = "<h1><span id='teqHead'>Toronto East Quadrant</span>" +
-    "<br><span id='lipHead'>Local Immigration Partnership</span></h1>" +
-    "<button id='helpBtn'><img src=''></button>";
+    var content = "<img id='helpBtn' src='assets/help.png'>" +
+    "<h1 id='pageTitle'><span id='teqHead'>Toronto East Quadrant</span>" +
+    "<br><span id='lipHead'>Local Immigration Partnership</span></h1>";
     $("header").empty();
     $("header").append(content);
   }

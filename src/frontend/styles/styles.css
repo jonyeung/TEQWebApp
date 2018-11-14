@@ -84,7 +84,12 @@ select {
 }
 
 header:not(#loginHeader) {
-  cursor: pointer;
+  position: relative;
+  position: sticky;
+  width: 100%;
+  border-bottom: 5px #E8E8E8 solid;
+  background-color: #F5F5F5;
+  margin-bottom: 1%;
 }
 
 /* Header Style */
@@ -94,6 +99,11 @@ header:not(#loginHeader) {
 
 #lipHead {
   color: #6E3080;
+}
+
+#pageTitle {
+  cursor: pointer;
+  display: inline-block;
 }
 
 
@@ -287,4 +297,15 @@ li {
 
 #savedQuerySelect {
   display:inline;
+}
+
+#helpBtn {
+  float: right;
+  position: sticky;
+  display:inline-block;
+  width: 4em;
+  height: 4em;
+  margin-top: 2%;
+  margin-right: 2%;
+  cursor: pointer;
 }
