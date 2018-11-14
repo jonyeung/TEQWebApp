@@ -26,9 +26,9 @@ $(document).ready(function() {
   // Loads the help menu html into a new div with display none.
   function loadHelp() {
     var content = "<div id='helpMenu'>" +
-    "<span class='close' id='helpClose'>&times;</span>" + 
+    "<span class='close' id='helpClose'>&times;</span>" +
     "<div id='helpMenuContent'>" +
-    "<object width='100%' height='100%' data='help.html'></object></div></div>";
+    "<object width='30%' height='100%' data='help.html'></object></div></div>";
     $("body").append(content);
     $("#helpMenu").hide();
   }

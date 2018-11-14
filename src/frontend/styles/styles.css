@@ -310,6 +310,11 @@ li {
   cursor: pointer;
 }
 
+#helpBtn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 #helpMenu {
   width: 30%;
   height: 100%;
