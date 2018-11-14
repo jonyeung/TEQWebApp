@@ -9,6 +9,10 @@ $(document).ready(function() {
 		document.location.href = "dashboard.html";
 	});
 
+  $("#helpBtn").on("click", function() {
+    $("#helpMenu").toggle("slide", {direction: "right"}, 1000);
+  });
+
   // Loads the page header into the header tag.
   function loadHeader() {
     var content = "<img id='helpBtn' src='assets/help.png'>" +
