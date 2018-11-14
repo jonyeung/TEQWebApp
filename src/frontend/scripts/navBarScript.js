@@ -17,4 +17,7 @@ $(document).ready(function() {
     $("header").append(content);
   }
 
+  function loadHelp() {
+  }
+
 });
