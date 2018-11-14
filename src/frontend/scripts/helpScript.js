@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  alert("something");
   setUpMenu();
 
   function setUpMenu() {

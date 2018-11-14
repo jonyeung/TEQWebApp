@@ -9,6 +9,7 @@ $(document).ready(function() {
 		document.location.href = "dashboard.html";
 	});
 
+  // Help click opens the help menu
   $("#helpBtn").on("click", function() {
     $("#helpMenu").toggle("slide", {direction: "right"}, 1000);
   });
@@ -24,10 +25,12 @@ $(document).ready(function() {
 
   // Loads the help menu html into a new div with display none.
   function loadHelp() {
-    var content = "<div id='helpMenu'></div>";
+    var content = "<div id='helpMenu'>" +
+    "<span class='close' id='helpClose'>&times;</span></div>" +
+    "<div id='helpMenuContent'></div>";
     $("body").append(content);
     $("#helpMenu").hide();
-    $("#helpMenu").load("help.html");
+    $("#helpMenuContent").load("help.html");
   }
 
 });
