@@ -4,8 +4,8 @@ $(document).ready(function() {
   loadHeader();
   loadHelp();
 
-  // Header click redirects to dashboard.
-	$("header").on("click", function() {
+  // Header title click redirects to dashboard.
+	$("#pageTitle").on("click", function() {
 		document.location.href = "dashboard.html";
 	});
 
@@ -30,10 +30,7 @@ $(document).ready(function() {
     "<div id='helpMenuContent'><object data='help.html'></object></div>";
     $("body").append(content);
     $("#helpMenu").hide();
-    $("#helpMenuOptions").accordion({
-      collapsible: true,
-      active: false //Can be set to number
-    });
+    $("#helpMenuContent").children().hide();
   }
 
 });
