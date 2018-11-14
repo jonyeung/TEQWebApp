@@ -27,10 +27,13 @@ $(document).ready(function() {
   function loadHelp() {
     var content = "<div id='helpMenu'>" +
     "<span class='close' id='helpClose'>&times;</span></div>" +
-    "<div id='helpMenuContent'></div>";
+    "<div id='helpMenuContent'><object data='help.html'></object></div>";
     $("body").append(content);
     $("#helpMenu").hide();
-    $("#helpMenuContent").load("help.html");
+    $("#helpMenuOptions").accordion({
+      collapsible: true,
+      active: false //Can be set to number
+    });
   }
 
 });
