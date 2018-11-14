@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
   loadHeader();
+  loadHelp();
 
   // Header click redirects to dashboard.
 	$("header").on("click", function() {
@@ -17,7 +18,12 @@ $(document).ready(function() {
     $("header").append(content);
   }
 
+  // Loads the help menu html into a new div with display none.
   function loadHelp() {
+    var content = "<div id='helpMenu'></div>";
+    $("body").append(content);
+    $("#helpMenu").hide();
+    $("#helpMenu").load("help.html");
   }
 
 });
