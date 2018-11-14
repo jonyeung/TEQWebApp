@@ -20,7 +20,7 @@ $(document).ready(function() {
     // Set up the accordion.
     $("#helpMenuOptions").accordion({
       collapsible: true,
-      active: false //Can be set to number
+      active: false
     });
   }
 });
