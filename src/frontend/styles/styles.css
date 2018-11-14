@@ -313,5 +313,11 @@ li {
 #helpMenu {
   width: 50%;
   z-index: 1;
+  top: 0;
+  position: fixed;
+}
+
+#helpMenuContent {
+  top: 0;
   position: fixed;
 }

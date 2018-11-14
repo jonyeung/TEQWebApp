@@ -10,8 +10,9 @@ $(document).ready(function() {
 	});
 
   // Help click opens the help menu
-  $("#helpBtn").on("click", function() {
+  $("#helpBtn, #helpClose").on("click", function() {
     $("#helpMenu").toggle("slide", {direction: "right"}, 1000);
+    $("#helpMenuContent").children().toggle("slide", {direction: "right"}, 1000);
   });
 
   // Loads the page header into the header tag.
