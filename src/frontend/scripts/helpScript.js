@@ -5,7 +5,7 @@ $(document).ready(function() {
   function setUpMenu() {
     $("#helpMenuOptions").accordion({
       collapsible: true,
-      active: false; //Can be set to number
+      active: false //Can be set to number
     });
   }
 });
