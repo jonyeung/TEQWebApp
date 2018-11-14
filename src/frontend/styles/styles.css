@@ -336,3 +336,7 @@ li {
   margin-right: 2em;
   display: block;
 }
+
+#exportToCSVButton {
+  margin-top: 40px;
+}
