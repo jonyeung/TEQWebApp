@@ -12,7 +12,6 @@ $(document).ready(function() {
   // Help click opens the help menu
   $("#helpBtn, #helpClose").on("click", function() {
     $("#helpMenu").toggle("slide", {direction: "right"}, 1000);
-    $("#helpMenuContent").children().toggle("slide", {direction: "right"}, 1000);
   });
 
   // Loads the page header into the header tag.
@@ -27,11 +26,11 @@ $(document).ready(function() {
   // Loads the help menu html into a new div with display none.
   function loadHelp() {
     var content = "<div id='helpMenu'>" +
-    "<span class='close' id='helpClose'>&times;</span></div>" +
-    "<div id='helpMenuContent'><object data='help.html'></object></div>";
+    "<span class='close' id='helpClose'>&times;</span>" + 
+    "<div id='helpMenuContent'>" +
+    "<object width='100%' height='100%' data='help.html'></object></div></div>";
     $("body").append(content);
     $("#helpMenu").hide();
-    $("#helpMenuContent").children().hide();
   }
 
 });
