@@ -78,7 +78,10 @@ $(document).ready(function (){
 		}
 		var data = [];
 		for (var i = 0;i< selectedFilters.length;i++){
-			data[i] = localAgencyData[selectedFilters[i]];
+			if (i == 0) {
+				data[i] = "update_record_id"; 
+			}
+			data[i+1] = localAgencyData[selectedFilters[i]];
 		}
 		data = {columns:data}
 		$.ajax({
