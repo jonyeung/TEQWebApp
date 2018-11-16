@@ -72,37 +72,30 @@ $(document).ready(function (){
 	});
 
 	$("button#applyFilterButton").on("click", function(){
-		if(selectedFilters.length == 0){
-			alert("Please select at least 1 filter.");
+		var data = filterDataSetup(localAgencyData);
+		// do nothing if filter was empty
+		if (data == null) {
 			return;
-		}
-		var data = [];
-		for (var i = 0;i< selectedFilters.length;i++){
-			if (i == 0) {
-				data[i] = "update_record_id"; 
-			}
-			data[i+1] = localAgencyData[selectedFilters[i]];
-		}
-		data = {columns:data}
-		$.ajax({
-			type:"GET",
-			url:"http://c01.mechanus.io/getColumns",
-			data: $.param(data),
-			dataType:"json",
-			traditional:true,
-			error: function(){
-				alert("Error getting column data.");
-			},
-			success:function(data,status){
-				if(data.success){
-					generateColumns(data.result.data, localAgencyData);
-					console.log(objToCsv(data.result.data));
-				}else{
-					alert("Cannot apply filter.");
+		} else {
+			data = {columns:data};
+			$.ajax({
+				type:"GET",
+				url:"http://c01.mechanus.io/getColumns",
+				data: $.param(data),
+				dataType:"json",
+				traditional:true,
+				error: function(){
+					alert("Error getting column data.");
+				},
+				success:function(data,status){
+					if(data.success){
+						generateColumns(data.result.data, localAgencyData);
+					}else{
+						alert("Cannot apply filter.");
+					}
 				}
-			}
-		})
-
+			})
+		}
 	})
 
 	$('#savedQuerySelect').change(function() {
@@ -110,7 +103,53 @@ $(document).ready(function (){
 		updateSelectedFilters(query)
 	})
 
+	$("button#exportToCSVButton").on("click", function(){
+		var data = filterDataSetup(localAgencyData);
+		var csv = null;
+		// do nothing if filter was empty
+		if (data == null) {
+			return;
+		} else {
+			data = {columns:data};
+			$.ajax({
+				type:"GET",
+				url:"http://c01.mechanus.io/getColumns",
+				data: $.param(data),
+				dataType:"json",
+				traditional:true,
+				error: function(){
+					alert("Error getting column data.");
+				},
+				success:function(data,status){
+					if(data.success){
+						// convert to csv and download
+						csv = objToCsv(data.result.data);
+						downloadCSVFile(csv);
+					}else{
+						alert("Cannot export to csv.");
+					}
+				}
+			})
+		}
+	})
 })
+
+// function to setup apply filters/export data to csv
+function filterDataSetup(localAgencyData){
+	if(selectedFilters.length == 0){
+		alert("Please select at least 1 filter.");
+		return null;
+	}
+	var data = [];
+	for (var i = 0;i< selectedFilters.length;i++){
+		if (i == 0) {
+			data[i] = "update_record_id"; 
+		}
+		data[i+1] = localAgencyData[selectedFilters[i]];
+	}
+
+	return data;
+}
 
 // function that populates filters when user clicks on a letter
 function loadFilterButtons(){
@@ -221,4 +260,21 @@ function objToCsv(obj){
 		return null;
 	}
 	
+}
+
+// function to download the csv file
+function downloadCSVFile(csv) {  
+	var data, filename, link;
+	if (csv == null) {
+		return;
+	}
+	filename = 'report.csv';
+	if (!csv.match(/^data:text\/csv/i)) {
+		csv = 'data:text/csv;charset=utf-8,' + csv;
+	}
+	data = encodeURI(csv);
+	link = document.createElement('a');
+	link.setAttribute('href', data);
+	link.setAttribute('download', filename);
+	link.click();
 }
