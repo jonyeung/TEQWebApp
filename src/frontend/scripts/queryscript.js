@@ -195,12 +195,31 @@ function generateColumns(data, localAgencyData){
 			}
 			table += '<th>' + value + '</th>';
 		}
-		table += '<th><button id="DeleteRowButton"><i class="fa fa-close"></i></button></th>';
+		const id = data[i].update_record_id
+		table += `<th><button id="DeleteRowButton" value="${id}" class="fa fa-close"</button></th>`;
 		table += '</tr>';
 	}
 	table += '</table>';
+	table_dom = $(table)
 
-	$("div#generatedTable").append(table);
+	table_dom.on("click", "button", function() {
+		const id = $(this).val()
+		$.ajax({
+			type: "DELETE",
+			url: "http://localhost:8080/row",
+			data: { id },
+			error: function() {
+				alert("Error occured during deletion.")
+			},
+			success: function(data, status) {
+				if (data.success) {
+					alert(`Row ${id} successfully deleted`)
+				}
+			}
+		})
+	})
+
+	$("div#generatedTable").append(table_dom);
 }
 
 function getKeyByValue(object, value) {
