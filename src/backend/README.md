@@ -170,3 +170,20 @@ e.g.
 ➜  backend git:(t28) ✗ curl localhost:8080/getPresetQueries
 {"success":true,"result":{"ab":["Health Referrals","Housing/Accommodation"],"Donald trump's secret":["Health Referrals","Housing/Accommodation","Housing Referrals"]}}% 
 ```
+
+### delete row
+DELETE `/row`
+
+parameters:
+- id: int
+
+return value:
+- success: boolean
+- result: object, if successful
+- error: object, if successful
+
+example:
+```
+xiazhong@IITS-I406-21:~$ curl -X DELETE -d 'id=10387104' localhost:8080/row
+{"success":true,"result":{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}}
+```
