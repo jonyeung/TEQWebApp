@@ -78,7 +78,10 @@ $(document).ready(function (){
 		}
 		var data = [];
 		for (var i = 0;i< selectedFilters.length;i++){
-			data[i] = localAgencyData[selectedFilters[i]];
+			if (i == 0) {
+				data[i] = "update_record_id"; 
+			}
+			data[i+1] = localAgencyData[selectedFilters[i]];
 		}
 		data = {columns:data}
 		$.ajax({
@@ -140,6 +143,7 @@ function generateColumns(data, localAgencyData){
 	for(let[key,value] of Object.entries(data[0])){
 		table += '<th>' + getKeyByValue(localAgencyData,key) + '</th>'
 	}
+	table += '<th style="background-color:red">Delete Row</th>';
 	table += '</tr>';
 
 	for(var i = 0;i< data.length; i++){
@@ -152,6 +156,7 @@ function generateColumns(data, localAgencyData){
 			}
 			table += '<th>' + value + '</th>';
 		}
+		table += '<th><button id="DeleteRowButton"><i class="fa fa-close"></i></button></th>';
 		table += '</tr>';
 	}
 	table += '</table>';

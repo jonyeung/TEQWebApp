@@ -84,7 +84,12 @@ select {
 }
 
 header:not(#loginHeader) {
-  cursor: pointer;
+  position: relative;
+  position: sticky;
+  width: 100%;
+  border-bottom: 5px #E8E8E8 solid;
+  background-color: #F5F5F5;
+  margin-bottom: 1%;
 }
 
 /* Header Style */
@@ -94,6 +99,11 @@ header:not(#loginHeader) {
 
 #lipHead {
   color: #6E3080;
+}
+
+#pageTitle {
+  cursor: pointer;
+  display: inline-block;
 }
 
 
@@ -287,6 +297,44 @@ li {
 
 #savedQuerySelect {
   display:inline;
+}
+
+#helpBtn {
+  float: right;
+  position: sticky;
+  display:inline-block;
+  width: 4em;
+  height: 4em;
+  margin-top: 2%;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+#helpBtn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#helpMenu {
+  width: 30%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  position: fixed;
+  background-color: white;
+  border-left: 5px #E8E8E8 solid;
+  right: 0;
+  display: block;
+}
+
+#helpMenuContent {
+  width:100%;
+  height:100%;
+  position: fixed;
+  background-color: white;
+  margin-top: 2em;
+  margin-right: 2em;
+  display: block;
 }
 
 #exportToCSVButton {
