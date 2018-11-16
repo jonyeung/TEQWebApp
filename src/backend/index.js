@@ -151,4 +151,21 @@ app.get('/getPresetQueries', function(req, res) {
         })
 })
 
+app.delete('/row', function(req, res) {
+    const {id} = req.body
+    agency.deleteRow(id)
+        .then((result) => {
+            res.json({
+                success: true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success: false,
+                error
+            })
+        })
+})
+
 app.listen(8080)
