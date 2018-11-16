@@ -96,7 +96,6 @@ $(document).ready(function (){
 			success:function(data,status){
 				if(data.success){
 					generateColumns(data.result.data, localAgencyData);
-					console.log(objToCsv(data.result.data));
 				}else{
 					alert("Cannot apply filter.");
 				}
