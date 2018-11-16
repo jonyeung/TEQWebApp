@@ -22,7 +22,7 @@ ${sleepDelay}     2
 *** Test Cases ***
 UserListTest
     Open Browser    ${login URL}    ff
-    Wait Until Element Is Visible    ${usernameField}    ${delay}
+    Sleep    ${sleepDelay}
     Input Text    ${usernameField}    ${userNameHighLevel}
     Input Text    ${passwordField}    ${passwordHighLevel}
     Click Element    ${logInButton}

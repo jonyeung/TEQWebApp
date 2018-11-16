@@ -19,6 +19,9 @@ In order to run the tests,  further dependencies are also required. Users will n
 Following this, users must install wxPython to run Robot Framework. wxPython can be found at the following link:
 https://sourceforge.net/projects/wxpython/files/wxPython/2.8.12.1/
 
+User must then install geckodriver for the test to work with firefox.
+Download from the following link: https://github.com/mozilla/geckodriver/releases
+
 Finally the IDE to run Robot Framework, RIDE, is installed.
 `pip install robotframework-ride`
 When this is done, RIDE is started by running `ride.py`

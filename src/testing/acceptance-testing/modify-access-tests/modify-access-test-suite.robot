@@ -24,7 +24,7 @@ ${sleepDelay}     2
 *** Test Cases ***
 SupportAgencyTest
     Open Browser    ${login URL}    ff
-    Wait Until Element Is Visible    ${usernameField}    ${delay}
+    Sleep    ${sleepDelay}
     Input Text    ${usernameField}    ${userNameHighLevel}
     Input Text    ${passwordField}    ${passwordHighLevel}
     Click Element    ${logInButton}
@@ -48,7 +48,7 @@ SupportAgencyTest
 
 TEQLowLevelTest
     Open Browser    ${login URL}    ff
-    Wait Until Element Is Visible    ${usernameField}    ${delay}
+    Sleep    ${sleepDelay}
     Input Text    ${usernameField}    ${userNameHighLevel}
     Input Text    ${passwordField}    ${passwordHighLevel}
     Click Element    ${logInButton}
@@ -72,7 +72,7 @@ TEQLowLevelTest
 
 TEQMidLevelTest
     Open Browser    ${login URL}    ff
-    Wait Until Element Is Visible    ${usernameField}    ${delay}
+    Sleep    ${sleepDelay}
     Input Text    ${usernameField}    ${userNameHighLevel}
     Input Text    ${passwordField}    ${passwordHighLevel}
     Click Element    ${logInButton}
@@ -96,7 +96,7 @@ TEQMidLevelTest
 
 TEQHighLevelTest
     Open Browser    ${login URL}    ff
-    Wait Until Element Is Visible    ${usernameField}    ${delay}
+    Sleep    ${sleepDelay}
     Input Text    ${usernameField}    ${userNameHighLevel}
     Input Text    ${passwordField}    ${passwordHighLevel}
     Click Element    ${logInButton}
@@ -120,7 +120,7 @@ TEQHighLevelTest
 
 UTSCProjectStaffTest
     Open Browser    ${login URL}    ff
-    Wait Until Element Is Visible    ${usernameField}    ${delay}
+    Sleep    ${sleepDelay}
     Input Text    ${usernameField}    ${userNameHighLevel}
     Input Text    ${passwordField}    ${passwordHighLevel}
     Click Element    ${logInButton}

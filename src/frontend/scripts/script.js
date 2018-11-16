@@ -26,8 +26,6 @@ $(document).ready(function() {
 		   	dataType:"json",
 		   	traditional: true,
 			success:function(data, status){
-				console.log(data);
-				console.log(status);
 				if(data.result.authenticated){
 					window.location.href = "dashboard.html";
 					sessionStorage.setItem("username", username.toString());
@@ -105,7 +103,6 @@ $(document).ready(function() {
 			if($(this).find('option:selected').text() != "Pick a user type from the dropdown list...") {
 				var id = $(this).attr('id')
 				var accessLevel = $(this).val();
-				console.log(id + accessLevel)
 				$.ajax({
 					type:"POST",
 					url: "https://c01.mechanus.io/changeAccess",
@@ -180,12 +177,10 @@ $(document).ready(function() {
 
 		for(var i = 1; i < excelRows.length; i++){
 			if(excelRows[i] != undefined){
-				console.log(excelRows[i]);
 				var data = excelRows[i];
 
 				data = cleanData(data, formType);
 				data = {"row" : data};
-				console.log(data);
 
 				$.ajax({
 					type:"POST",
