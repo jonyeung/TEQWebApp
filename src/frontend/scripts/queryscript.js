@@ -143,7 +143,7 @@ function filterDataSetup(localAgencyData){
 	var data = [];
 	for (var i = 0;i< selectedFilters.length;i++){
 		if (i == 0) {
-			data[i] = "update_record_id"; 
+			data[i] = "update_record_id";
 		}
 		data[i+1] = localAgencyData[selectedFilters[i]];
 	}
@@ -206,7 +206,7 @@ function generateColumns(data, localAgencyData){
 		const id = $(this).val()
 		$.ajax({
 			type: "DELETE",
-			url: "http://localhost:8080/row",
+			url: "https://c01.mechanus.io/row",
 			data: { id },
 			error: function() {
 				alert("Error occured during deletion.")
@@ -272,17 +272,17 @@ function objToCsv(obj){
 					csv += ",";
 				}
 			}
-			csv += "\n";	
+			csv += "\n";
 		}
 		return csv;
 	}else{
 		return null;
 	}
-	
+
 }
 
 // function to download the csv file
-function downloadCSVFile(csv) {  
+function downloadCSVFile(csv) {
 	var data, filename, link;
 	if (csv == null) {
 		return;
