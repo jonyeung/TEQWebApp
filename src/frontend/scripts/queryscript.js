@@ -200,10 +200,10 @@ function objToCsv(obj){
 			for (var k = 0; k < values.length;k++){
 				if(values[k] == null){
 					csv += 'N/A';
-				}else if (values[k] == "Buffer"){
+				}else if (values[k]['type'] == "Buffer"){
 					csv += values[k] == 1 ? 'Yes' : 'No';
 				}else{
-					csv += values[k];
+					csv += values[k].replace(/,/g, '');
 				}
 				if(k < values.length - 1){
 					csv += ",";
