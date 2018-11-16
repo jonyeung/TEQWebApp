@@ -93,6 +93,19 @@ module.exports = {
                 }
             })
         })
+    },
+
+    deleteRow: function(id) {
+        const query = 'delete from AgencyData where update_record_id = ?'
+        return new Promise((resolve, reject) => {
+            con.query(query, [ id ], function(err, result) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(result)
+                }
+            })
+        })       
     }
 
 }
