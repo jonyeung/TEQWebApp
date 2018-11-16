@@ -247,7 +247,7 @@ function objToCsv(obj){
 				}else if (values[k]['type'] == "Buffer"){
 					csv += values[k] == 1 ? 'Yes' : 'No';
 				}else{
-					csv += values[k].replace(/,/g, '');
+					csv += values[k].replace(/,/g, ' ');
 				}
 				if(k < values.length - 1){
 					csv += ",";
