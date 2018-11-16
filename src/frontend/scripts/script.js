@@ -223,7 +223,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type:"POST",
-			url:"http://c01.mechanus.io/saveQuery",
+			url:"https://c01.mechanus.io/saveQuery",
 			data: ({
 				query_name : query_name,
 				column_list : selectedFilters,

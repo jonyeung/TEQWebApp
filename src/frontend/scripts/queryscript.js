@@ -80,7 +80,7 @@ $(document).ready(function (){
 			data = {columns:data};
 			$.ajax({
 				type:"GET",
-				url:"http://c01.mechanus.io/getColumns",
+				url:"https://c01.mechanus.io/getColumns",
 				data: $.param(data),
 				dataType:"json",
 				traditional:true,
@@ -113,7 +113,7 @@ $(document).ready(function (){
 			data = {columns:data};
 			$.ajax({
 				type:"GET",
-				url:"http://c01.mechanus.io/getColumns",
+				url:"https://c01.mechanus.io/getColumns",
 				data: $.param(data),
 				dataType:"json",
 				traditional:true,
@@ -210,7 +210,7 @@ function getKeyByValue(object, value) {
 function applySavedQueries() {
 	$.ajax({
 		type: 'GET',
-		url: 'http://c01.mechanus.io/getPresetQueries',
+		url: 'https://c01.mechanus.io/getPresetQueries',
 		error: function() {
 			alert('Error occured during data retrieval.')
 		},
