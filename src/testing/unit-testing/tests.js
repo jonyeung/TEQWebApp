@@ -29,16 +29,12 @@ QUnit.test("test for getKeyByValue", function(assert){
 QUnit.test("test for generateColumns", function(assert){
     var data = [{"processing_details":"details1", "phone_no":"phone1"},
     {"processing_details":"details2", "phone_no":"phone2"}];
-    var expected = "<table id=\"dataList\"><tbody><tr><th>Processing Details</th><th>Phone Number</th>"+
-    "<th style=\"background-color:red\">Delete Row</th></tr><tr><th>details1</th><th>phone1</th><th>"+
-    "<button id=\"DeleteRowButton\"><i class=\"fa fa-close\"></i></button></th></tr><tr><th>details2</th>"+
-    "<th>phone2</th><th><button id=\"DeleteRowButton\"><i class=\"fa fa-close\"></i></button></th>"+
-    "</tr></tbody></table>"
+    var expected = "Processing DetailsPhone NumberDelete Rowdetails1phone1details2phone2";
     var newdiv = $('<div id="generatedTable"></div>');
 
     newdiv.appendTo('body');
     generateColumns(data,agencyData);
     $("#generatedTable").css("display","none");
-    assert.equal($('#generatedTable').html(),
+    assert.equal($('#generatedTable').text(),
     expected,"Passed!");
 });
