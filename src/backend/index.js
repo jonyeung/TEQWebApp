@@ -168,4 +168,21 @@ app.delete('/row', function(req, res) {
         })
 })
 
+app.post('/changePassword', function(req,res){
+    const {username,oldPW,newPW}= req.body
+    user.changePassword(username,oldPW,newPW)
+        .then((result) =>{
+            res.json({
+                success:true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success:false,
+                error
+            })
+        })
+})
+
 app.listen(8080)
