@@ -200,10 +200,11 @@ return value:
 - success: boolean
 - result: object (only if the operation is successful)
   - username: String
+  - rowChanged: int, 1 if password successfully changed, 0 otherwise 
 
 
 example:
 ```
 ➜  backend git:(backend) ✗ curl -d 'username=nov20test&oldPW=old_password&newPW=new_password' -X POST localhost:8080/changePassword
-{"success":true,"result":{"username":"nov20test"}}
+{"success":true,"result":{"username":"nov20test", "rowChanged":1}}
 ```

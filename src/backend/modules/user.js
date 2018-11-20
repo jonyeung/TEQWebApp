@@ -95,7 +95,8 @@ module.exports = {
                     reject(err)
                 }else{
                     resolve({
-                        username
+                        username,
+                        rowChanged:result.affectedRows
                     })
                 }
             })
