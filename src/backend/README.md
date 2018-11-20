@@ -187,3 +187,23 @@ example:
 xiazhong@IITS-I406-21:~$ curl -X DELETE -d 'id=10387104' localhost:8080/row
 {"success":true,"result":{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}}
 ```
+
+#### change user access level
+POST `/changePassword`
+
+query:
+- username: String
+- oldPW: String (this MUST match the password in the database)
+- newPW: String
+
+return value:
+- success: boolean
+- result: object (only if the operation is successful)
+  - username: String
+
+
+example:
+```
+➜  backend git:(backend) ✗ curl -d 'username=nov20test&oldPW=old_password&newPW=new_password' -X POST localhost:8080/changePassword
+{"success":true,"result":{"username":"nov20test"}}
+```

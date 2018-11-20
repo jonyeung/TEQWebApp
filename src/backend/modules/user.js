@@ -80,13 +80,14 @@ module.exports = {
     },
 
     changePassword: function(username, oldPW, newPW){
-        const hash = crypto.createHash('sha1')
-        hash.update(newPW)
-        const hashedNewPW = hash.digest('hex')
-        hash.update(oldPW)
-        const hashedOldPW = hash.digest('hex')
+        const hash1 = crypto.createHash('sha1')
+        hash1.update(newPW)
+        const hashedNewPW = hash1.digest('hex')
+        const hash2 = crypto.createHash('sha1')
+        hash2.update(oldPW)
+        const hashedOldPW = hash2.digest('hex')
         const query = 'update users set password = ? where username = '+
-        '(select username from users where username = ? and password = ?)'
+        '(select username from (select * from users) as tmp where username = ? and password = ?)'
 
         return new Promise((resolve, reject) => {
             con.query(query, [hashedNewPW, username, hashedOldPW], function(err,result){
@@ -94,7 +95,6 @@ module.exports = {
                     reject(err)
                 }else{
                     resolve({
-                        id,
                         username
                     })
                 }
