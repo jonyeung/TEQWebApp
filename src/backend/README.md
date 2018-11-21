@@ -188,7 +188,7 @@ xiazhong@IITS-I406-21:~$ curl -X DELETE -d 'id=10387104' localhost:8080/row
 {"success":true,"result":{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}}
 ```
 
-#### change user access level
+#### change password
 POST `/changePassword`
 
 query:
