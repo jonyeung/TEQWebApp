@@ -7,3 +7,8 @@
 * Removed old user story 14(using webshells) because it was not as important as other user stories
 * Moved user story 12 to the end
 * Product Backlog updated to reflect these changes
+
+## Nov 21:
+* Updated User Stories to v.03
+* Updated Product Backlog to v.02
+* Modified user story 14 to be all about changing password of current user and not including reset password.

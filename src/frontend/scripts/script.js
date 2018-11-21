@@ -240,6 +240,53 @@ $(document).ready(function() {
 		return false;
 
 	});
+
+	// change current user password function
+	$("button#changePasswordBtn").on("click", function(){
+		const currentUsername = sessionStorage.getItem("username");
+		var inputUsername = $("#changePassUsername[name=username]").val();
+		var oldPassword = $("#oldPassword[name=oldPassword]").val();
+		var newPassword = $("#newPassword[name=newPassword]").val();
+
+		// check empty fields
+		if (inputUsername == "" || oldPassword == "" || newPassword == "") {
+			alert("Fields cannot be empty.");
+			return false;
+		// check if entered username is the current username
+		} else if(currentUsername != inputUsername) {
+			alert("Current username mismatch. Please enter your current username.");
+			return false;
+		}
+
+		$.ajax({
+			type:"POST",
+			url:"http://localhost:8080/changePassword",
+			data: ({
+				username : inputUsername,
+				oldPW : oldPassword,
+				newPW : newPassword
+			}),
+			error: function(){
+				alert("Password changing error.");
+			},
+			dataType:"json",
+			traditional: true,
+			success:function(data,status){
+				if(data.success){
+					if(data.result.rowChanged == 1) {
+						alert(data.result.username + "'s password has sucessfully been changed.");
+						location.reload();
+					} else {
+						alert("Password unchanged. Please enter the correct current username and password.");
+					}
+				}else{
+					alert("Change password failed, please try again.")
+				}
+			}
+		})
+		return false;
+	});
+
 });
 
 // Cleans data from Excel file by keeping it consistent with columns in db
