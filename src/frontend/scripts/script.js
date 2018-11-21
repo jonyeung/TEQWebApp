@@ -260,7 +260,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type:"POST",
-			url:"http://localhost:8080/changePassword",
+			url:"https://c01.mechanus.io/changePassword",
 			data: ({
 				username : inputUsername,
 				oldPW : oldPassword,
