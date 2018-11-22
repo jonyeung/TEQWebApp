@@ -85,8 +85,8 @@ $(document).ready(function() {
 		success:function(data,status){
 			if(data.success){
 				$(data.result.users).each(function(index){
-					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
-					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' +
+					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'
+					+this.access_level+'</td><td>' +
 					generateDropdown(this.ID) + '</td></tr>';
 					$('#userList tr:last').after(row);
 				})
