@@ -288,9 +288,6 @@ function downloadCSVFile(csv) {
 		return;
 	}
 	filename = 'report.csv';
-	if (!csv.match(/^data:text\/csv/i)) {
-		csv = 'data:text/csv;charset=utf-8,' + csv;
-	}
 
 	var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
 	if (navigator.msSaveBlob)
