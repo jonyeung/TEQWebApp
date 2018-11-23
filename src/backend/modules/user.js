@@ -3,7 +3,7 @@ const crypto = require('crypto')
 
 module.exports = {
     createUser: function(username, password, access_level) {
-        var query = 'insert into users (username, password access_level) values (?, ?, ?)'
+        var query = 'insert into users (username, password, access_level) values (?, ?, ?)'
         const hash = crypto.createHash('sha1')
         hash.update(password)
         const hashedPassword = hash.digest('hex')
