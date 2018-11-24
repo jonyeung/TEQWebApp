@@ -283,7 +283,7 @@ function objToCsv(obj){
 
 // function to download the csv file
 function downloadCSVFile(csv) {
-	var data, filename, link;
+	var filename, link;
 	if (csv == null) {
 		return;
 	}
