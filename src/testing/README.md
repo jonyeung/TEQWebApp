@@ -27,7 +27,12 @@ Finally the IDE to run Robot Framework, RIDE, is installed.
 When this is done, RIDE is started by running `ride.py`
 
 ### Running a Test Suite
-Use RIDE to open any of the .robot files and navigate to the Run tab to execute the test cases.
+Since the acceptance test runs on local server, user must go to team2\ directory in terminal and start the server there with
+`python -m SimpleHTTPServer`
+Then in another terminal use RIDE to open any of the .robot files and navigate to the Run tab to execute the test cases.
+
+***NOTE***: Some feature tests such as register and save query makes a user/saved query in the database and the database will not accept duplicate usernames/query names which means you must either delete the specific user/saved query from the database, or more likely you must change the value of the variables in the test before you run the tests so that the database can actually accept the user/saved query. If you do not do this the acceptance test will fail.
+Example of a value that must be changed before runnning is "AcceptanceTest" query name in the save query test. 
 
 ## Unit Testing
 
