@@ -289,6 +289,29 @@ $(document).ready(function() {
 
 });
 
+// Call get logs from server, and insert onto the page.
+$.ajax({
+	type:"GET",
+	url:"https://c01.mechanus.io/logs",
+	error: function(){
+		alert("Error in getting historical logs from server.");
+	},
+	dataType:"json",
+	traditional:true,
+	success:function(data,status){
+		if(data.success){
+			$(data.result).each(function(index){
+				var row = '<tr><td>'+this[0]+'</td><td>'+this[1]+ '</td><td>'+
+				this[2]+'</td></tr>';
+				$('#historicalLogTable tr:last').after(row);
+			})
+		}else{
+			console.log("Error in getting historical logs from server.");
+		}
+	}
+
+});
+
 // Cleans data from Excel file by keeping it consistent with columns in db
 function cleanData(data, formType){
 	for (var key in data){
