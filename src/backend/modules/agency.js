@@ -105,7 +105,20 @@ module.exports = {
                     resolve(result)
                 }
             })
-        })       
+        })
+    },
+
+    retrieveLogs: function() {
+        const query = "select * from QueryLog"
+        return new Promise((resolve, reject) => {
+            con.query(query, function(err, result) {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(result)
+                }
+            })
+        })
     }
 
 }

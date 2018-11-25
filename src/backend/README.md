@@ -208,3 +208,11 @@ example:
 ➜  backend git:(backend) ✗ curl -d 'username=nov20test&oldPW=old_password&newPW=new_password' -X POST localhost:8080/changePassword
 {"success":true,"result":{"username":"nov20test", "rowChanged":1}}
 ```
+
+
+#### retrieve logs
+GET /logs
+
+result:
+    success: boolean
+            result: array of array(userid, timestamp, query)

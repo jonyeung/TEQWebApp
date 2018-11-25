@@ -185,4 +185,19 @@ app.post('/changePassword', function(req,res){
         })
 })
 
+app.get('/logs', function(req, res) {
+    agency.retrieveLogs()
+        .then((result) =>{
+            res.json({
+                success:true,
+                result
+            })
+        })
+        .catch((error) => {
+            res.json({
+                success:false,
+                error
+            })
+        })
+})
 app.listen(8080)
