@@ -293,7 +293,7 @@ $(document).ready(function() {
 $.ajax({
 	type:"GET",
 	url:"https://c01.mechanus.io/logs",
-	error: function(){
+	error: function(xhr, textStatus, errorThrown){
 		alert("Error in getting historical logs from server.");
 	},
 	dataType:"json",
