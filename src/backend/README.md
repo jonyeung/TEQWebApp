@@ -142,6 +142,7 @@ POST `/saveQuery`
 body:
 - query_name: string
 - column_list: list of strings
+- userid: int
 
 return value:
 - success: boolean
