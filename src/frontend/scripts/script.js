@@ -293,12 +293,12 @@ $(document).ready(function() {
 $.ajax({
 	type:"GET",
 	url:"https://c01.mechanus.io/logs",
-	error: function(xhr, textStatus, errorThrown){
+	error: function(){
 		alert("Error in getting historical logs from server.");
 	},
 	dataType:"json",
 	traditional:true,
-	success:function(data,status){
+	success:function(data, status){
 		if(data.success){
 			$(data.result).each(function(index){
 				var row = '<tr><td>'+this[0]+'</td><td>'+this[1]+ '</td><td>'+
