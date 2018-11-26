@@ -10,7 +10,7 @@ The video about our code review is [here](https://drive.google.com/open?id=1kRGL
 The src is divided into two sub-directories: backend and frontend. The frontend contains all our HTML pages along with the jQuery scripts and styling sheets.
 The backend contains all our backend APIs powered by Node.js.
 
-#Product Demo
+# Product Demo
 Our product demo can be found at https://youtu.be/-At0rUuQEo8.
 
 # Project Planning
