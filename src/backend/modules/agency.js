@@ -59,7 +59,7 @@ module.exports = {
         })
     },
 
-    saveQuery: function(query_name, column_list) {
+    saveQuery: function(query_name, column_list, id) {
         const query = 'insert into PresetQueries (query_name, query) values (?, ?)'
         column_list = (Array.isArray(column_list) ? column_list : [ column_list ])
         return new Promise((resolve, reject) => {
@@ -69,8 +69,19 @@ module.exports = {
                     console.log(err)
                     reject(err)
                 } else {
-                    resolve({
-                        result
+                    const insertResult = result
+                    var timestamp = date.getTime()
+                    const logQuery = 'insert into QueryLog (userID, time_stamp, query) values (?, ?)'
+                    var date = new Date()
+
+                    con.query(logQuery, [id, timestamp, query_name], function(err, result) {
+                        if (err) {
+                            reject(err)
+                        } else {
+                            resolve({
+                                insertResult
+                            })
+                        }
                     })
                 }
             })

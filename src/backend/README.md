@@ -142,6 +142,7 @@ POST `/saveQuery`
 body:
 - query_name: string
 - column_list: list of strings
+- userid: int
 
 return value:
 - success: boolean
@@ -215,4 +216,4 @@ GET /logs
 
 result:
     success: boolean
-            result: array of array(userid, timestamp, query)
+    result: array of array(userid, timestamp, query)
