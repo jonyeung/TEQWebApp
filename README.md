@@ -21,7 +21,9 @@ Please see the backlogs directory for information regarding the direction of the
 During Sprint 4, our team did a code review, evaluating the code written from Sprints 1-3. Under backlogs/sprint-backlogs/Sprint 4 there is a file that outlines the strategy we employed for the code review, as well as the individual comments that each team member wrote following the code review. See above for a video where we summarized the changes and improvements we made to the code going forward.
 
 # Executing the Project
-Navigate through Team2/src/frontend/ . You can run the HTML files locally on a browser of your choice. Currently we have
+Navigate through Team2/src/frontend/ . You can run the HTML files locally on a browser of your choice (Disclaimer: It has been tested and is fully supported by *Google Chrome*, but we cannot assure that every other browser will work perfectly). 
+
+Currently we have
 the following pages and features:
 ```
 - index: login page, user can sign in with their credentials
