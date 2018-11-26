@@ -215,4 +215,4 @@ GET /logs
 
 result:
     success: boolean
-            result: array of array(userid, timestamp, query)
+    result: array of array(userid, timestamp, query)
