@@ -26,6 +26,8 @@ the following pages and features:
 - registration: page to register a new user with password and access levels
 - upload_data: page that allows users to upload iCARE templates into the database
 - query: page that allows user to filter through and search through the data
+- change_password: page that allows user to change their account password
+- log: page for the UTSC staff to view changes to preset queries
 ```
 # Testing
 Unit tests and acceptance tests have been written for the user stories up to the end of Sprint 3. The tests can be found under src/testing .

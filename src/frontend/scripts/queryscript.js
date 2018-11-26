@@ -12,6 +12,7 @@ $(document).ready(function (){
 
 	applySavedQueries();
 
+	// event handler for generating column names upon clicking a letter button
 	$("button[class=filterOptions]").on("click", function(event){
 		$("ol#selectable").empty();
 		var id = event.target.id;
@@ -26,12 +27,11 @@ $(document).ready(function (){
 		$("ol#selectable").append(row);
 	});
 
-    $(function() {
-	    $( "#queryInput" ).autocomplete({
-	       source: columnNameData
-	    });
- 	});
+	$( "#queryInput" ).autocomplete({
+		source: columnNameData
+	});
 
+	// event handler for adding filters to the filter list and updating the UI
  	$("button#addFilterButton").on("click", function(event){
  		var searchContent = $("input#queryInput").val();
  		if($.inArray(searchContent, columnNameData) != -1){
@@ -42,12 +42,14 @@ $(document).ready(function (){
  		}
  	});
 
+	// clear all filters in the filter list and update UI
 	$("button#clearFilterButton").on("click",function(event){
 		selectedFilters = [];
 		updateSelectedFilters(selectedFilters);
 	});
 
-	$('ol#selectable').on("click", "button.colomnNamesList",function(event){
+	// add a filter to the filter list and update UI
+	$("ol#selectable").on("click", "button.colomnNamesList",function(event){
 		var selected = event.target;
 		if($.inArray($(selected).text(), selectedFilters) == -1){
 			selectedFilters.push($(selected).text());
@@ -55,28 +57,24 @@ $(document).ready(function (){
 		}
 	});
 
+	// enable save query popup window
 	$("button#savePopupButton").on("click", function() {
 		$("div#saveQueryPopup").css("display", "block");
 	});
 
+	// disable save query popup window
 	$("#closePopup").on("click", function() {
 		$("div#saveQueryPopup").css("display", "none");
 	});
-
-	$("button#cancelSaveButton").on("click", function() {
+	$("[class=closeQuery]").on("click", function() {
 		$("div#saveQueryPopup").css("display", "none");
 	});
 
-	$("button#saveQueryButton").on("click", function() {
-		$("div#saveQueryPopup").css("display", "none");
-	});
-
+	// after user applies filters, generate columns based on results from the database
 	$("button#applyFilterButton").on("click", function(){
 		var data = filterDataSetup(localAgencyData);
 		// do nothing if filter was empty
-		if (data == null) {
-			return;
-		} else {
+		if (data != null) {
 			data = {columns:data};
 			$.ajax({
 				type:"GET",
@@ -98,18 +96,18 @@ $(document).ready(function (){
 		}
 	})
 
-	$('#savedQuerySelect').change(function() {
+	// use a preset query and update UI
+	$("#savedQuerySelect").change(function() {
 		const query = JSON.parse(this.value)
 		updateSelectedFilters(query)
 	})
 
+	// export column data into a csv file and download it
 	$("button#exportToCSVButton").on("click", function(){
 		var data = filterDataSetup(localAgencyData);
 		var csv = null;
 		// do nothing if filter was empty
-		if (data == null) {
-			return;
-		} else {
+		if (data != null) {
 			data = {columns:data};
 			$.ajax({
 				type:"GET",
@@ -170,7 +168,7 @@ function updateSelectedFilters(filters){
 		buttons += '<button class="selectedFilters">' + filters[i] + '</button>';
 	}
 	$("div#selectedFilters").append(buttons);
-	selectedFilters = filters
+	selectedFilters = filters;
 }
 
 // function that generates a table from returned data
@@ -193,7 +191,7 @@ function generateColumns(data, localAgencyData){
 			}else if (value['type'] == "Buffer"){
 				value = value['data'] == 1 ? 'Yes' : 'No';
 			}
-			table += '<th>' + value + '</th>';
+			table += '<td>' + value + '</td>';
 		}
 		const id = data[i].update_record_id
 		table += `<th><button id="DeleteRowButton" value="${id}" class="fa fa-close"</button></th>`;
@@ -226,6 +224,7 @@ function getKeyByValue(object, value) {
   return Object.keys(object).find(key => object[key] === value);
 }
 
+// function that gets preset queries from the database and display in the dropdown menu
 function applySavedQueries() {
 	$.ajax({
 		type: 'GET',
@@ -247,9 +246,11 @@ function applySavedQueries() {
 	})
 }
 
+// function that converts a javascript object into csv format
 function objToCsv(obj){
-	var csv = "";
+	var csv = null;
 	if(obj.length > 0){
+		csv = "";
 		var header = Object.keys(obj[0]);
 		for(var i = 0; i < header.length; i++){
 			csv += getKeyByValue(agencyData,header[i]);
@@ -274,11 +275,8 @@ function objToCsv(obj){
 			}
 			csv += "\n";
 		}
-		return csv;
-	}else{
-		return null;
 	}
-
+	return csv;
 }
 
 // function to download the csv file
