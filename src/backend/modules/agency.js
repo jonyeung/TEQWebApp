@@ -70,9 +70,9 @@ module.exports = {
                     reject(err)
                 } else {
                     const insertResult = result
-                    var timestamp = date.getTime()
+                    const date = new Date();
+                    const timestamp = date.getTime()
                     const logQuery = 'insert into QueryLog (userID, time_stamp, query) values (?, ?)'
-                    var date = new Date()
 
                     con.query(logQuery, [id, timestamp, query_name], function(err, result) {
                         if (err) {
