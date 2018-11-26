@@ -132,12 +132,16 @@ header:not(#loginHeader) {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid #DDDDDD;
   border-collapse: collapse;
 }
 
 th, td {
   padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #F2F2F2;
 }
 
 #userListDiv {
