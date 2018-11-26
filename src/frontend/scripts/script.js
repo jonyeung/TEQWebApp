@@ -30,6 +30,7 @@ $(document).ready(function() {
 					window.location.href = "dashboard.html";
 					sessionStorage.setItem("username", username.toString());
 					sessionStorage.setItem("userLevel", (data.result.user.access_level).toString());
+					sessionStorage.setItem("userid", data.result.user.ID);
 				}else{
 					alert("Username/password does not match, please try again.")
 				}
@@ -86,7 +87,7 @@ $(document).ready(function() {
 			if(data.success){
 				$(data.result.users).each(function(index){
 					var row = '<tr><td>'+this.ID+'</td><td>'+this.username+ '</td><td>'+
-					this.access_level+'</td><td>' +
+					this.currently_logged_in+'</td><td>'+this.access_level+'</td><td>' +
 					generateDropdown(this.ID) + '</td></tr>';
 					$('#userList tr:last').after(row);
 				})
@@ -222,6 +223,7 @@ $(document).ready(function() {
 			data: ({
 				query_name : query_name,
 				column_list : selectedFilters,
+				id : sessionStorage.userid,
 				traditional: true
 			}),
 			error: function(){
@@ -301,8 +303,8 @@ $.ajax({
 	success:function(data, status){
 		if(data.success){
 			$(data.result).each(function(index){
-				var row = '<tr><td>'+this[0]+'</td><td>'+this[1]+ '</td><td>'+
-				this[2]+'</td></tr>';
+				var row = '<tr><td>'+this.userID+'</td><td>'+this.time_stamp+ '</td><td>'+
+				this.query+'</td></tr>';
 				$('#historicalLogTable tr:last').after(row);
 			})
 		}else{
